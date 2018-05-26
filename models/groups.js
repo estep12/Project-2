@@ -3,17 +3,29 @@ module.exports = function(sequelize, DataTypes) {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+
+                len: [1]
+            }
         },
         admin:  {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
+            validate: {
+                isNumeric: true,
+                len: [1]
+            }
 
         }
     });
     Group.associate = function(models) {
-        Group.hasMany(models.Events, models.People, {
-            onDelete: "cascade"
-        });
+        Group.hasMany(models.Events 
+        )
+        Group.belongsToMany(models.People, {
+            through: 'PeopleGroups',
+            as: 'People',
+            foreignKey: 'groupId'
+        })
     };
     return Group;
 }

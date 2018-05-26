@@ -15,15 +15,16 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isNumeric: true
+            isNumeric: true,
+            len: [10]
         }
     }
     });
     People.associate = function(models) {
-        People.belongsTo(models.Group, {
-            foreignKey: {
-                allowNull: false
-            }
+        People.belongsToMany(models.Group, {
+            through: 'PeopleGroups',
+            as: 'Group',
+            foreignKey: 'peopleId'
         });
     };
 

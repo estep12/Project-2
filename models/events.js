@@ -3,17 +3,38 @@ module.exports = function(sequelize, DataTypes) {
         name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+            len: [1]
+        }
 
     },
     organizer: {
         type: DataTypes.STRING,
         allowNull: false,
-
+        validate: {
+            len: [1]
+        }
     },
-    location: {
+    location_address: {
         type: DataTypes.STRING,
         allowNull: false,
-
+        validate: {
+            len: [1]
+        }
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [1]
+        }
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [1]
+        }
     },
     date: {
         type: DataTypes.DATE,
@@ -25,12 +46,16 @@ module.exports = function(sequelize, DataTypes) {
     time: {
         type: DataTypes.TIME,
         allowNull: false,
-
+        validate: {
+            len: [1]
+        }
     },
     description: {
         type: DataTypes.TEXT,
         allowNull: false,
-
+        validate: {
+            len: [1]
+        }
     },
     });
     Events.associate = function(models) {
