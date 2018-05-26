@@ -1,23 +1,48 @@
 var db = require("../models")
 
 module.exports = function(app){
-    db.get("/api/events", function(req, res){
-
+    app.get("/api/events", function(req, res){
+        db.Events.findAll({}).then(function(dbEvents){
+            res.json(dbEvents)
+        });
     });
 
-    db.get("/api/events/:id", function(req, res){
-
+    app.get("/api/events/:id", function(req, res){
+        db.Events.findOne({
+            where: {
+                id:req.params.id
+            }
+        }).then(function(dbEvents){
+            res.json(dbEvents);
+        });
     });
 
-    db.post("/api/events", function(req, res){
-
+    app.post("/api/events", function(req, res){
+        db.Events.create(req.body).then(function(dbEvents){
+            res.json(dbEvents)
+        });
     });
 
     app.put("/api/events", function(req, res){
-
+        db.Events.update(
+            req.body,
+            {
+                where: {
+                    id: req.body.id
+                }
+            }
+        ).then(function(dbEvents){
+            res.json(dbEvents)
+        });
     });
 
     app.delete("/api/events/:id", function(req, res){
-
+        db.Events.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbEvents){
+            res.json(dbEvents)
+        });
     });
 }
