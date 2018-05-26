@@ -1,8 +1,8 @@
-var db = require("../models")
+var db = require("../models/events.js")
 
 module.exports = function(app){
     app.get("/api/events", function(req, res){
-        db.Events.findAll({}).then(function(dbEvents){
+        db.Events.findAll({include:[db.Group]}).then(function(dbEvents){
             res.json(dbEvents)
         });
     });
@@ -11,7 +11,8 @@ module.exports = function(app){
         db.Events.findOne({
             where: {
                 id:req.params.id
-            }
+            },
+            include: [db.Group]
         }).then(function(dbEvents){
             res.json(dbEvents);
         });
