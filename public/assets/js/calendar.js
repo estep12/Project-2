@@ -10,6 +10,12 @@ $(function(){
             phoneNumber: $("#validationCustom04").val().trim(),
         };
 
-        $.ajax("/api/")
+        $.ajax("/api/people", {
+            type: "POST",
+            data: newSignup
+        }).then(function(){
+            console.log("Creatd New User");
+            location.reload(); 
+        });
     })
 })
