@@ -6,9 +6,8 @@ $(function(){
             firstName: $("#validationCustom01").val().trim(),
             lastName: $("#validationCustom02").val().trim(),
             username: $("#validationCustomUsername").val().trim(),
-            city: $("#validationCustom03").val().trim(),
-            state: $("#validationCustom04").val().trim(),
-            zip: $("#validationCustom05").val().trim(),
+            email: $("#validationCustom03").val().trim(),
+            phoneNumber: $("#validationCustom04").val().trim(),
         };
 
         $.ajax("/api/")
