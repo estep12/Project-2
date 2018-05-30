@@ -20,12 +20,12 @@ module.exports = function(sequelize, DataTypes) {
     });
     Group.associate = function(models) {
         Group.hasMany(models.Events 
-        )
+        );
         Group.belongsToMany(models.People, {
             through: 'PeopleGroups',
-            as: 'People',
-            foreignKey: 'groupId'
-        })
+            // as: 'People',
+            // foreignKey: 'groupId'
+        });
     };
     return Group;
 }
