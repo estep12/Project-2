@@ -11,8 +11,12 @@ module.exports = function(app){
           res.render("events")
       });
 
-      app.get("/create", function(req, res){
-        res.render("create")
+      app.get("/createevent", function(req, res){
+        res.render("createevent")
+    });
+
+      app.get("/creategroup", function(req, res){
+        res.render("creategroup")
     });
 
       app.get("/logout", function(req, res){
