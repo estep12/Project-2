@@ -19,7 +19,16 @@ module.exports = function(app){
     });
 
     app.post("/api/groups", function(req, res){
-        db.Group.create(req.body).then(function(dbGroup){
+        db.Group.create(
+            req.body,
+            {
+                include: [{
+                    model: db.Events,
+                    model: db.People,
+                    through: {attributes: []}
+                }]
+            }
+        ).then(function(dbGroup){
             res.json(dbGroup)
         })
     });
