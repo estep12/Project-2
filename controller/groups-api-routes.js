@@ -2,7 +2,13 @@ var db = require("../models")
 
 module.exports = function(app){
     app.get("/api/groups", function(req, res){
-        db.Group.findAll({include:[db.Events, db.People]}).then(function(dbGroup){
+        db.Group.findAll({
+            include:[{
+                model:db.Events,
+                model:db.People,
+                through: {attributes: []}
+            }]
+        }).then(function(dbGroup){
             res.json(dbGroup)
         });
     });
