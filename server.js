@@ -25,7 +25,8 @@ require("./controller/events-api-routes.js")(app);
 require("./controller/groups-api-routes.js")(app);
 require("./controller/people-api-routes.js")(app);
 
-db.sequelize.sync({ force: true }). then(function() {
+db.sequelize.sync({ force: true }).then(function() {
+    console.log("goodbye")
     app.listen(PORT, function() {
         console.log("listening on PORT" + PORT);
     })
