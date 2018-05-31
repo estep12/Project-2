@@ -33,24 +33,52 @@
     </div>
   </div>  
           <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Event Name</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Event name" value="Event Name" required>
+            <label for="group-name">Group Name Here</label>
+            <input type="text" class="form-control" id="group-name" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Date and Time</label>
-            <div class="input-group">
+            <label for="coordinator-username">Coordinator</label>
+            <input type="text" class="form-control" id="coordinator-username" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Event Name</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Event name" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Date</label>
+            <div class="input-group date">
               <div class="input-group-prepend">
                 <label for="example-datetime-local-input"></label>
-                  <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  <input class="form-control" type="date" id="date-input">
               </div>
               <div class="invalid-feedback">
-                Please choose a date and time.
+                Please choose a date.
               </div>
             </div>
           </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Time</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label for="example-datetime-local-input"></label>
+                  <input class="form-control" type="time" id="time-input">
+              </div>
+              <div class="invalid-feedback">
+                Please choose a time.
+              </div>
+            </div>
+          </div>
+
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="validationCustom03">Address</label>
@@ -90,7 +118,7 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit Event</button>
+        <button class="btn btn-primary" type="submit" id="createEventNow">Submit Event</button>
       </form>
     </div>
   </div>
