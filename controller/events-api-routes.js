@@ -1,8 +1,13 @@
-var db = require("../models/events.js")
+var db = require("../models")
 
 module.exports = function(app){
     app.get("/api/events", function(req, res){
-        db.Events.findAll({include:[db.Group]}).then(function(dbEvents){
+        db.Events.findAll({
+            include: [{
+            model: db.Group,
+            through: {attributes: []}
+        }]
+        }).then(function(dbEvents){
             res.json(dbEvents)
         });
     });
@@ -17,9 +22,16 @@ module.exports = function(app){
             res.json(dbEvents);
         });
     });
-
+ 
     app.post("/api/events", function(req, res){
-        db.Events.create(req.body).then(function(dbEvents){
+        db.Events.create(
+            req.body,
+            {
+                include: [{
+                    model: db.Group,
+                    through: {attributes:[]}
+                }]
+            }).then(function(dbEvents){
             res.json(dbEvents)
         });
     });

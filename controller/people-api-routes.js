@@ -2,7 +2,12 @@ var db = require("../models")
 
 module.exports = function(app){
     app.get("/api/people", function(req, res){
-        db.People.findAll({}).then(function(dbPeople){
+     db.People.findAll({ 
+         include: [{
+             model: db.Group,
+             through: {attributes: []}
+         }]
+        }).then(function(dbPeople){
             res.json(dbPeople)
         });
     });
@@ -19,10 +24,17 @@ module.exports = function(app){
     });
 
     app.post("/api/people", function(req, res){
-        db.People.create(req.body).then(function(dbPeople){
+        db.People.create(
+        req.body,
+            {
+            include: [{
+                model: db.Group,
+                through: {attributes: []}
+            }]
+        }).then(function(dbPeople){
             res.json(dbPeople)
         });
-    });
+    }); 
 
     app.put("/api/people", function(req, res){
         db.People.update(

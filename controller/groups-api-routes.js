@@ -1,4 +1,4 @@
-var db = require("../models/groups.js")
+var db = require("../models")
 
 module.exports = function(app){
     app.get("/api/groups", function(req, res){
