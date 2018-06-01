@@ -7,12 +7,16 @@ module.exports = function(app){
         res.render("index")
       });
 
-      app.get("/allEvents", function(req, res){
-          res.render("events")
-      });
+    //   app.get("/allEvents", function(req, res){
+    //       res.render("events")
+    //   });
 
-      app.get("/create", function(req, res){
-        res.render("create")
+      app.get("/createEvent", function(req, res){
+        res.render("createevent")
+    });
+
+    app.get("/createGroup", function(req, res){
+        res.render("creategroup")
     });
 
       app.get("/logout", function(req, res){
