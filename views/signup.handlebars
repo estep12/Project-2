@@ -11,12 +11,12 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/myEvents">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a>
+            {{!-- <a class="nav-item nav-link" href="/myEvents">My Events</a>
+            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createEvent">Create Event</a>
             <a class="nav-item nav-link" href="/creategroup">Create Group</a>
             <a class="nav-item nav-link" href="/logout">Log Out</a>
-            <a class="nav-item nav-link" href="#">Sign Up</a>
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
           </div>
         </div>
       </nav>
@@ -30,44 +30,52 @@
     <form class="needs-validation" novalidate>
         <div class="form-row">
           <div class="col-md-4 mb-3">
-            <label for="validationCustom01">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="First name" value="Mark" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Last name</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last name" value="Otto" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
+          
+        </div>
+        <div class="form-row">
           <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Username</label>
+            <label for="userName">Username</label>
             <div class="input-group">
-              <div class="input-group-prepend">
-                
-              </div>
-              <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+              <input type="text" class="form-control" id="userName" placeholder="Username" aria-describedby="inputGroupPrepend" required>
               <div class="invalid-feedback">
                 Please choose a username.
               </div>
             </div>
           </div>
+          <div class="col-md-4 mb-3">
+            <label for="password">Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" placeholder="password" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback">
+                Please choose a password.
+              </div>
+            </div>
+          </div>
         </div>
-        
         <div class="form-row">
           <div class="col-md-6 mb-3">
-            <label for="validationCustom03">Email</label>
-            <input type="text" class="form-control" id="validationCustom03" placeholder="Email" required>
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Email" required>
             <div class="invalid-feedback">
               Please provide a email address.
             </div>
           </div>
           <div class="col-md-3 mb-3">
-            <label for="validationCustom04">Phone Number</label>
-            <input type="text" class="form-control" id="validationCustom04" placeholder="Phone Number" required>
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" required>
             <div class="invalid-feedback">
               Please provide a valid Phone Number.
             </div>

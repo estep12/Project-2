@@ -27,7 +27,18 @@ module.exports = function(sequelize, DataTypes) {
             isNumeric: true,
             len: [10]
         }
-    }
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    last_login: {
+        type: DataTypes.DATE,
+    },
+    status: {
+        type: DataTypes.ENUM('active', 'inactive'),
+        defaultValue: 'active',
+    },
     });
     People.associate = function(models) {
         People.belongsToMany(models.Group, {
