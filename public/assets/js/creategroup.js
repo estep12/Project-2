@@ -21,11 +21,39 @@ $(function(){
         });
     })
 
-    $("#edit-member").on("click", function(event){
+    $("#delete-member").on("click", function(event){
         event.preventDefault();
+        console.log("HI");
         
-        var editMember = {
-            
+        
+        var id = $(this).data("id")
+
+        $.ajax("/api/groups", {
+            type: "DELETE",
+            data: id
+        }).then(function(){
+            console.log("Deleted Member");
+            location.reload();
+        })
+    });
+
+    $("#add-new-member").on("click", function(event){
+        event.preventDefault();
+        console.log("Click");
+        
+        var newMember = {
+            name: $("#add-username").val().trim(),
+            admin: "1"
         }
+
+        console.log(newMember);
+        
+        $.ajax("/api/groups", {
+            type: "POST",
+            data: newMember
+        }).then(function(){
+            console.log("created new member");
+            location.reload();
+        })
     })
 });
