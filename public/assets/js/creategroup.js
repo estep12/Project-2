@@ -20,4 +20,12 @@ $(function(){
             location.reload(); 
         });
     })
-})
+
+    $("#edit-member").on("click", function(event){
+        event.preventDefault();
+        
+        var editMember = {
+            
+        }
+    })
+});
