@@ -1,10 +1,9 @@
 // load bcrypt
 const bCrypt = require('bcrypt-nodejs');
+const User = require('../../models/people.js');
+const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = function(passport, user) {
-  let User = user;
-  let LocalStrategy = require('passport-local').Strategy;
-
+module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
@@ -12,46 +11,42 @@ module.exports = function(passport, user) {
 
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-    User.findById(id).then(function(user) {
-      if (user) {
-        done(null, user.get());
-      } else {
-        done(user.errors, null);
-      }
+    User.findById(id, function(err, user) {
+      done(err, user);
     });
   });
 
-
+  // local signup
   passport.use('local-signup', new LocalStrategy(
     {
-      usernameField: 'email',
+      usernameField: 'userName',
       passwordField: 'password',
       passReqToCallback: true, // allows us to pass back the entire request to the callback
     },
 
-    function(req, email, password, done) {
+    function(req, userName, password, done) {
       let generateHash = function(password) {
         return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
       };
 
-      User.findOne({ where: { email: email } }).then(function(user) {
+      User.findOne({ where: { userName: userName } }).then(function(user) {
         if (user) {
-          return done(null, false, { message: 'That email is already taken' });
+          return done(null, false, { message: 'That username is already taken' });
         } else {
           let userPassword = generateHash(password);
           var data = { 
             email: email,
             password: userPassword,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname
+            firstName: req.body.firstName,
+            lastName: req.body.lastName
           };
 
-          User.create(data).then(function(newUser,created) {
+          User.create(data).then(function(newUser, created) {
             if (!newUser) {
               return done(null,false);
             }
             if (newUser) {
-              return done(null,newUser);
+              return done(null, newUser);
             }
           });
         }

@@ -5,20 +5,26 @@ module.exports = function(app, passport) {
 
   app.get('/login', authController.signin);
 
+  // test code may not do anything =====================================
+  app.get('/creategroup', passport.authenticate('local'), function(req, res) {
+    res.redirect('/creategroup');
+  });
+
+  app.get('/createevent', passport.authenticate('local'), function(req, res) {
+    res.redirect('/createevent');
+  });
+  // test code may not do anything =====================================
+
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/dashboard',
+    successRedirect: '/',
     failureRedirect: '/signup',
   }));
 
   app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/dashboard',
+    successRedirect: '/',
 
     failureRedirect: '/signin',
   }));
-
-  app.get('/dashboard', isLoggedIn, authController.dashboard);
-
-  app.get('/logout', authController.logout);
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
@@ -26,4 +32,8 @@ module.exports = function(app, passport) {
     }
     res.redirect('/signin');
   }
+
+  app.get('/', isLoggedIn, authController.home);
+
+  app.get('/logout', authController.logout);
 };

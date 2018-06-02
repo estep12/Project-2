@@ -8,7 +8,7 @@ exports.signin = function(req, res) {
   res.render('login');
 };
 
-exports.dashboard = function(req, res) {
+exports.home = function(req, res) {
   res.render('/');
 };
 
