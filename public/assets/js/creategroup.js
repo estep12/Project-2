@@ -6,7 +6,7 @@ $(function(){
 
         var newGroup = {
             name: $("#groupName").val().trim(),
-            admin: 1
+            admin: "1"
 
         };
 
