@@ -37,7 +37,7 @@ app.use(passport.session()); // persistant login sessions
 
 // Routes
 // const authRoute = require('./controller/user-auth-routes.js')(app, passport);
-require('./controller/user-auth-routes.js')(app, passport);
+// require('./controller/user-auth-routes.js')(app, passport);
 
 // load passport strategies
 const Passport = require('./config/passport/passport.js')(passport, db.People);

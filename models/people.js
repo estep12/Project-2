@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.ENUM('active', 'inactive'),
         defaultValue: 'active',
     },
-    }, {
+    }, { 
         hooks: {
             beforeCreate: function(user) {
                 const salt = bcrypt.genSaltSync();

@@ -12,11 +12,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a>
+            {{!-- <a class="nav-item nav-link" href="#">My Events</a>
+            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
             <a class="nav-item nav-link" href="#">Create Group</a>
-            <a class="nav-item nav-link" href="/logout">Log Out</a>
+            <a class="nav-item nav-link" href="/login">Log In</a>
             <a class="nav-item nav-link" href="/signup">Sign Up</a>
           </div>
         </div>
@@ -31,6 +31,7 @@
   <br>
   
   <div class="form-group">
+
     {{!-- Display, Edit group name --}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
@@ -89,6 +90,7 @@
     
   {{!-- close form group div --}}
   </div>  
+
 {{!-- close main body container --}}
 </div> 
 
@@ -96,6 +98,7 @@
 <script>
   $(function() {
     $(document).on('click', '.btn-add', function(e) {
+
         e.preventDefault();
         var controlForm = $('.controls form:first'),
             currentEntry = $(this).parents('.entry:first'),
