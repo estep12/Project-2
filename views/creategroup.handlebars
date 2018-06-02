@@ -24,52 +24,81 @@
     </div>
   </div>
 </header>
+
 <main>
 <div class ="container">
-  <h1>Create a New Group</h1>
+  <h1>Manage Your Group</h1>
+  <br>
   
   <div class="form-group">
 
-      <div class="col-md-4 mb-3">
-            <label for="groupName">Group Name</label>
-            <input type="text" class="form-control" id="groupName" placeholder="Group name" value="" required>
-            {{!-- <button class="btn btn-primary" id="submit-group" type="submit">Create Group</button> --}}
+    {{!-- Display, Edit group name --}}
+    <div class="row">
+      <div class="col-md-4 mb-3 ml-4">
+        <h3><label for="validationCustom02">Group Name</label></h3>
+        <input type="text" class="form-control" id="submit-group-name" placeholder="Group name" value="Group Name" required>
+        <div class="valid-feedback">
+          That's a great group name!
+        </div>
+      </div>
+    </div>
+    {{!-- Display, Edit, and Delete existing group members --}}
+    <div class="row">
+      <div class="col-md-8 mb-3 ml-4">
+        <h3><label class="control-label" for="field1">Group Members</label></h3>
+        <ul class="list-group">
 
-            <div class="valid-feedback">
-              That's a great group name!
-            </div>
-          </div>
-</div>
+          <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <div id="member-username" class="w-100">Member 1</div>
+                <div class="flex-shrink-1 btn-group">
+                  <button id="edit-member" class="btn btn-dark"><i>Edit</i></button>
+                  <button id="delete-member" class="btn btn-danger"><i>Delete</i></button>
+                </div>
+              </div>
+          </li>
 
-	<div class="row">
-    <div class="col-md-4 mb-3 ml-4">
+        </ul>
+      </div>
+    </div>
+    {{!-- Add new group member --}}
+    <div class="row">
+      <div class="col-md-4 mb-3 ml-4">
         <div class="control-group" id="fields">
-            <label class="control-label" for="field1">Future Group Members</label>
-            <div class="controls"> 
-                <form role="form" autocomplete="off">
-                    <div class="entry input-group col-xs-4">
-                        <input class="form-control" name="fields[]" type="text" placeholder="User Name" />
-                    	<span class="input-group-btn">
-                            <button class="btn btn-success btn-add" type="button">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
+          <div class="controls"> 
+            <form role="form" autocomplete="off">
+              <div class="input-group col-xs-4">
+                  <input class="form-control" name="fields[]" type="text" placeholder="Add username" />
+                  <button id="add-new-member"class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                  </button>
+              </div>
+            </form>
             <br>
             <small>Press <i class="fas fa-plus"> </i> to add a group member!</small>
-            </div>
+          </div>
         </div>
-        </div>
-	</div>
+      </div>
+    </div>
+    <br>
+    {{!-- Take user back to dashboard --}}
+    <div class="row">
+      <div class="col-md-4 mb-3 ml-4">
+        <input class="btn btn-dark" type="submit" value="Done, Go Back to Dashboard">
+      </div>
+    </div>
+    
+  {{!-- close form group div --}}
   </div>  
-<input class="btn btn-primary" id="submit-group" type="submit" value="Submit Group">
-  </div>
-  <script>
-    $(function()
-{
-    $(document).on('click', '.btn-add', function(e)
-    {
+
+{{!-- close main body container --}}
+</div> 
+
+
+<script>
+  $(function() {
+    $(document).on('click', '.btn-add', function(e) {
+
         e.preventDefault();
         var controlForm = $('.controls form:first'),
             currentEntry = $(this).parents('.entry:first'),
@@ -79,12 +108,12 @@
             .removeClass('btn-add').addClass('btn-remove')
             .removeClass('btn-success').addClass('btn-danger')
             .html('<i class="fas fa-minus"></i>');
-    }).on('click', '.btn-remove', function(e)
-    {
+    }).on('click', '.btn-remove', function(e) {
 		$(this).parents('.entry:first').remove();
 		e.preventDefault();
 		return false;
-	});
-});
-  </script>
+	  });
+  });
+</script>
+
 </main>
