@@ -27,16 +27,19 @@
 <main>
 <div class ="container">
   <h1>Create a New Group</h1>
+  
   <div class="form-group">
+
       <div class="col-md-4 mb-3">
             <label for="groupName">Group Name</label>
             <input type="text" class="form-control" id="groupName" placeholder="Group name" value="" required>
             <button class="btn btn-primary" id="submit-group" type="submit">Create Group</button>
+
             <div class="valid-feedback">
               That's a great group name!
             </div>
           </div>
-
+</div>
       {{!-- <div class="col-md-4 mb-3">
             <label for="validationCustom02">Future Group Members</label>
             <input type="text" class="form-control" id="validationCustom02" placeholder="Member name" value="Member Name" required>
@@ -46,6 +49,7 @@
           </div> --}}
 
 	<div class="row">
+    <div class="col-md-4 mb-3 ml-4">
         <div class="control-group" id="fields">
             <label class="control-label" for="field1">Future Group Members</label>
             <div class="controls"> 
@@ -63,9 +67,10 @@
             <small>Press <i class="fas fa-plus"> </i> to add a group member!</small>
             </div>
         </div>
+        </div>
 	</div>
   </div>  
-
+<input class="btn btn-primary" type="submit" value="Submit Group">
   </div>
   <script>
     $(function()
@@ -80,7 +85,7 @@
         controlForm.find('.entry:not(:last) .btn-add')
             .removeClass('btn-add').addClass('btn-remove')
             .removeClass('btn-success').addClass('btn-danger')
-            .html('<i class="fas fa-plus"></i>');
+            .html('<i class="fas fa-minus"></i>');
     }).on('click', '.btn-remove', function(e)
     {
 		$(this).parents('.entry:first').remove();
