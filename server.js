@@ -1,8 +1,11 @@
 var express = require("express")
 var bodyParser = require("body-parser")
 const passport = require('passport');
-const session = require('express-session');
 const env = require('dotenv').load();
+// const bcrypt = require('bcrypt-nodejs');
+
+// authentication packages
+const session = require('express-session');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
@@ -23,17 +26,23 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // For Passport
-app.use(session({ secret: 'lineup', resave: true, saveUninitialized: true })); // session secret
+app.use(session({
+    secret: 'fsd889sdneroij$#^r9j2#iop9e',
+    resave: true,
+    saveUninitialized: false,
+    // cookie: { secure: true },
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistant login sessions
 
 // Routes
-const authRoute = require('./controller/user-auth-routes.js')(app, passport);
+// const authRoute = require('./controller/user-auth-routes.js')(app, passport);
+require('./controller/user-auth-routes.js')(app, passport);
 
 // load passport strategies
-require('./config/passport/passport.js')(passport, db.user);
+const Passport = require('./config/passport/passport.js')(passport, db.People);
 
-require("./controller/html-routes.js")(app);
+require("./controller/html-routes.js")(app, Passport);
 require("./controller/events-api-routes.js")(app);
 require("./controller/groups-api-routes.js")(app);
 require("./controller/people-api-routes.js")(app);

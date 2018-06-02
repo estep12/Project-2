@@ -24,32 +24,31 @@
   </div>
 </header>
 <main>    
-<div class="container">
-  <div class="row">
-    <div class="col-2-md"></div>
-    <nav class="sidebar">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header">
-            <h3>Dashboard</div>
-        <!-- Sidebar List -->
-        <ul class="list-unstyled components">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">My Events</a></li>
-          <li><!-- Dropdown items -->
-                <a href="#allEvents" data-toggle="collapse" aria-expanded="false">All Events</a>
-                <ul class="collapse list-unstyled" id="allEvents">
-                    <li><a href="#">My Events</a></li>
-                    <li><a href="#">Indivdiual Events</a></li>
-                    <li><a href="#">Group Events</a></li>
-                    <li><a href="#">Recourring Events</a></li>
-                </ul>
-          <li><!-- Dropdown items -->
-                <a href="#createEvents" data-toggle="collapse" aria-expanded="false">Create Events</a>
-                <ul class="collapse list-unstyled" id="createEvents">
-                    <li><a href="#">Indivdiual Events</a></li>
-                    <li><a href="#">Group Events</a></li>
-                    <li><a href="#">Recourring Events</a></li>
-                </ul>
-        </ul>
-    </nav>
+  <form class="needs-validation" novalidate>
+    <div class="container">
+      <div class="row">
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="userNameLogin">Username</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="userNameLogin" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback">
+                Please enter your username.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="passwordLogin">Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="passwordLogin" placeholder="password" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback">
+                Enter your password.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="login" type="submit">Submit form</button>
+    </div>
+  </form>
 </main>
