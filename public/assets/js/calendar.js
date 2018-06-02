@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
     $("#sign-up").on("click", function(event){
         event.preventDefault();
 
@@ -16,7 +16,13 @@ $(function(){
             data: newSignup
         }).then(function(){
             console.log("Created New User");
+            // $.ajax("/api/people/:id", {
+            //     type: "GET",
+
+            // })
             location.reload(); 
         });
     })
 })  
+
+
