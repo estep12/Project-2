@@ -12,8 +12,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a>
+            {{!-- <a class="nav-item nav-link" href="#">My Events</a>
+            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
             <a class="nav-item nav-link" href="#">Create Group</a>
             <a class="nav-item nav-link" href="/logout">Log Out</a>
@@ -30,7 +30,8 @@
   <div class="form-group">
       <div class="col-md-4 mb-3">
             <label for="groupName">Group Name</label>
-            <input type="text" class="form-control" id="groupName" placeholder="Group name" value="Group Name" required>
+            <input type="text" class="form-control" id="groupName" placeholder="Group name" value="" required>
+            <button class="btn btn-primary" id="submit-group" type="submit">Create Group</button>
             <div class="valid-feedback">
               That's a great group name!
             </div>

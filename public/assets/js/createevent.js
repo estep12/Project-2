@@ -1,5 +1,5 @@
 $(function(){
-    $("#createEventNow").on("click", function(event){
+    $("#submit-event").on("click", function(event){
         event.preventDefault();
 
         var newEvent = {
@@ -12,7 +12,7 @@ $(function(){
             time: $("#time-input").val().trim(),
             description: $("#exampleFormControlTextarea1").val().trim(),
             groupId: "1"
-
+ 
         };
 
         console.log(newEvent);
