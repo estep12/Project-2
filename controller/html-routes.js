@@ -15,7 +15,9 @@ module.exports = function(app){
         res.render("createevent")
     });
 
+
     app.get("/createGroup", function(req, res){
+
         res.render("creategroup")
     });
 

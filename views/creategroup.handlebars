@@ -1,3 +1,4 @@
+
 <header>
   <div class="container">
     <div class="navbar centered">
@@ -35,13 +36,13 @@
             </div>
           </div>
 
-      <div class="col-md-4 mb-3">
+      {{!-- <div class="col-md-4 mb-3">
             <label for="validationCustom02">Future Group Members</label>
             <input type="text" class="form-control" id="validationCustom02" placeholder="Member name" value="Member Name" required>
             <div class="valid-feedback">
               
             </div>
-          </div>
+          </div> --}}
 
 	<div class="row">
         <div class="control-group" id="fields">
@@ -52,13 +53,13 @@
                         <input class="form-control" name="fields[]" type="text" placeholder="User Name" />
                     	<span class="input-group-btn">
                             <button class="btn btn-success btn-add" type="button">
-                                <span class="glyphicon glyphicon-plus"></span>
+                                <i class="fas fa-plus"></i>
                             </button>
                         </span>
                     </div>
                 </form>
             <br>
-            <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
+            <small>Press <i class="fas fa-plus"> </i> to add a group member!</small>
             </div>
         </div>
 	</div>
@@ -78,7 +79,7 @@
         controlForm.find('.entry:not(:last) .btn-add')
             .removeClass('btn-add').addClass('btn-remove')
             .removeClass('btn-success').addClass('btn-danger')
-            .html('<span class="glyphicon glyphicon-minus"></span>');
+            .html('<i class="fas fa-plus"></i>');
     }).on('click', '.btn-remove', function(e)
     {
 		$(this).parents('.entry:first').remove();
