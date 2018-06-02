@@ -3,18 +3,19 @@ $(function(){
         event.preventDefault();
 
         var newSignup = {
-            firstName: $("#validationCustom01").val().trim(),
-            lastName: $("#validationCustom02").val().trim(),
-            userName: $("#validationCustomUsername").val().trim(),
-            email: $("#validationCustom03").val().trim(),
-            phoneNumber: $("#validationCustom04").val().trim(),
+            firstName: $("#firstName").val().trim(),
+            lastName: $("#lastName").val().trim(),
+            userName: $("#userName").val().trim(),
+            password: $("#password").val().trim(),
+            email: $("#email").val().trim(),
+            phoneNumber: $("#phoneNumber").val().trim(),
         };
 
-        $.post("/api/people", {
-            // type: "POST",
+        $.ajax("/api/people", {
+            type: "POST",
             data: newSignup
         }).then(function(){
-            console.log("Creatd New User");
+            console.log("Created New User");
             location.reload(); 
         });
     })
