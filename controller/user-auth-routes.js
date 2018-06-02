@@ -1,9 +1,10 @@
-const authController = require('./auth-controller.js');
+// const authController = require('./auth-controller.js');
 
-module.exports = function(app, passport) {
-  app.get('/signup', authController.signup);
+// module.exports = function(app, passport) {
+//   app.get('/signup', authController.signup);
 
-  app.get('/login', authController.signin);
+//   app.get('/login', authController.signin);
+
 
   // test code may not do anything =====================================
   // app.get('/creategroup', passport.authenticate('local'), function(req, res) {
@@ -15,16 +16,18 @@ module.exports = function(app, passport) {
   // });
   // test code may not do anything =====================================
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/',
-    failureRedirect: '/signup',
-  }));
 
-  app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/',
+//   app.post('/signup', passport.authenticate('local-signup', {
+//     successRedirect: '/',
+//     failureRedirect: '/signup',
+//   }));
 
-    failureRedirect: '/signin',
-  }));
+//   app.post('/signin', passport.authenticate('local-signin', {
+//     successRedirect: '/',
+
+//     failureRedirect: '/signin',
+//   }));
+
 
   // function isLoggedIn(req, res, next) {
   //   if (req.isAuthenticated()) {
@@ -37,3 +40,4 @@ module.exports = function(app, passport) {
 
   // app.get('/logout', authController.logout);
 };
+
