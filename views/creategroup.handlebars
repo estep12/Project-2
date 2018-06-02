@@ -16,7 +16,7 @@
             <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
             <a class="nav-item nav-link" href="#">Create Group</a>
-            <a class="nav-item nav-link" href="/logout">Log Out</a>
+            <a class="nav-item nav-link" href="/login">Log In</a>
             <a class="nav-item nav-link" href="/signup">Sign Up</a>
           </div>
         </div>
@@ -33,7 +33,7 @@
       <div class="col-md-4 mb-3">
             <label for="groupName">Group Name</label>
             <input type="text" class="form-control" id="groupName" placeholder="Group name" value="" required>
-            <button class="btn btn-primary" id="submit-group" type="submit">Create Group</button>
+            {{!-- <button class="btn btn-primary" id="submit-group" type="submit">Create Group</button> --}}
 
             <div class="valid-feedback">
               That's a great group name!
@@ -70,7 +70,7 @@
         </div>
 	</div>
   </div>  
-<input class="btn btn-primary" type="submit" value="Submit Group">
+<input class="btn btn-primary" id="submit-group" type="submit" value="Submit Group">
   </div>
   <script>
     $(function()
