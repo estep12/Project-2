@@ -3,6 +3,7 @@
 // module.exports = function(app, passport) {
 //   app.get('/signup', authController.signup);
 
+
 //   app.get('/login', authController.signin);
 
 //   // test code may not do anything =====================================
@@ -37,3 +38,4 @@
 
 //   app.get('/logout', authController.logout);
 // };
+

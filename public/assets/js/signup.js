@@ -1,3 +1,4 @@
+
 $(function () {
   $("#sign-up").on("click", function (event) {
     event.preventDefault();
@@ -42,3 +43,4 @@ $(function () {
     });
   });
 });
+
