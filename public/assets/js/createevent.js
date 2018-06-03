@@ -1,5 +1,5 @@
-$(function(){
-    $("#submit-event").on("click", function(event){
+$(function () {
+    $("#submit-event").on("click", function (event) {
         event.preventDefault();
 
         var newEvent = {
@@ -12,7 +12,7 @@ $(function(){
             time: $("#time-input").val().trim(),
             description: $("#exampleFormControlTextarea1").val().trim(),
             groupId: "1"
- 
+
         };
 
         console.log(newEvent);
@@ -20,9 +20,9 @@ $(function(){
         $.ajax("/api/events", {
             type: "POST",
             data: newEvent
-        }).then(function(){
+        }).then(function () {
             console.log("Created New Event");
-            location.reload(); 
+            location.reload();
         });
     })
 })
