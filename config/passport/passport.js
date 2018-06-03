@@ -1,148 +1,56 @@
-const db = require("../../models");
-// load bcrypt
-const bCrypt = require('bcrypt-nodejs');
+const db = require('../../models');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const Strategy = require('passport-local').Strategy;
+const bCrypt = require('bcrypt-nodejs');
 
-passport.serializeUser(function (user, done) {
-  console.log('serialize');
-  done(null, user.id);
-});
-
-// deserialize user
-passport.deserializeUser(function (id, done) {
-  db.People.findById(id, function (err, user) {
-    console.log(`deserialize ${user.userName}`);
-    done(err, user);
-  });
-});
-
-passport.use(new LocalStrategy(
+// Configure the local strategy for use by Passport.
+// User login
+passport.use('local-signin', new Strategy(
   {
-    usernameField: 'userNameLogin',
-    passwordField: 'passwordLogin',
+    usernameField: 'userName',
+    passwordField: 'password',
     passReqToCallback: true, // allows us to pass back the entire request to the callback
   },
-  function (userName, password, done) {
-    console.log(userName);
-    console.log(password);
-    const isValidPassword = function (userpass, pass) {
-      return bCrypt.compareSync(pass, userpass);
+  function(req, userName, password, cb) {
+    // console.log(userName);
+    // console.log(password);
+
+    // bCrypt hashed password check function
+    const isValidPassword = function(userPass, enteredPass) {
+      console.log('checking password');
+      return bCrypt.compareSync(enteredPass, userPass);
     };
 
     db.People.findOne({ where: { userName: userName } }).then(function (user) {
       if (!user) {
-        return done(null, false, { message: 'userName does not exist' });
+        console.log('checking for username');
+        console.log('userName does not exist');
+        return cb(null, false);
       }
       if (!isValidPassword(user.password, password)) {
-        return done(null, false, { message: 'Incorrect password.' });
+        console.log('Incorrect password.');
+        return cb(null, false);
       }
-      return done(null, user);
+      console.log('looked up username');
+      return cb(null, user);
     });
   },
 ));
 
+// User signup
+
+// Configure the local strategy for use by Passport.
+passport.serializeUser(function(user, cb) {
+  console.log(`user id: ${user.id}`);
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  console.log('deserialized user');
+  db.People.findOne({ where: { id: id } }).then(function(user) {
+    // if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
 module.exports = passport;
-
-// module.exports = function (passport) {
-  // passport.serializeUser(function (user, done) {
-  //   console.log('serialize');
-  //   done(null, user.id);
-  // });
-
-  // // deserialize user
-  // passport.deserializeUser(function (id, done) {
-  //   db.People.findById(id, function (err, user) {
-  //     console.log(`deserialize ${user.userName}`);
-  //     done(err, user);
-  //   });
-  // });
-
-  // // LOCAL SIGNIN ==================================================================================
-  // passport.use('login', new LocalStrategy(
-    // {
-    //   usernameField: 'userNameLogin',
-    //   passwordField: 'passwordLogin',
-    //   passReqToCallback: true, // allows us to pass back the entire request to the callback
-    // },
-
-  //   function (userName, password, done) {
-  //     const isValidPassword = function (userpass, pass) {
-  //       return bCrypt.compareSync(pass, userpass);
-  //     };
-
-  //     db.People.findOne({ where: { userName: userName } }).then(function (user) {
-  //       if (!user) {
-  //         return done(null, false, { message: 'userName does not exist' });
-  //       }
-  //       if (!isValidPassword(user.password, password)) {
-  //         return done(null, false, { message: 'Incorrect password.' });
-  //       }
-
-  //       const userinfo = user.get();
-
-  //       return done(null, userinfo);
-  //     }).catch(function (err) {
-  //       console.log('Error:', err);
-
-  //       return done(null, false, { message: 'Something went wrong with your Signin' });
-  //     });
-  //   },
-  // ));
-
-//   // local signup ==================================================================================
-//   passport.use('signup', new LocalStrategy(
-//     {
-//       usernameField: 'userName',
-//       passwordField: 'password',
-//       passReqToCallback: true,
-//     },
-
-//     function (req, userName, password, done) {
-//       console.log('Made it into passport!!');
-//       // console.log(req.body);
-//       // serialize user
-//       console.log(done);
-
-//       db.People.findOne({ where: { userName: userName } }).then(function (user) {
-//         if (user) {
-//           console.log('username exists');
-//           return done(null, false, { message: 'Username already exists.' });
-//         }
-//         if (!user) {
-//           // create user with POST to db
-//           console.log("username doesn't exist");
-//           db.People.create(
-//             req.body,
-//             {
-//               include: [{
-//                 model: db.Group,
-//                 through: { attributes: [] },
-//               }],
-//             },
-//           ).then(function (dbPeople) {
-//             // res.json(dbPeople);
-//             // console.log("success", dbPeople);
-//             if (!dbPeople) {
-//               return done(null, false);
-//               console.log("NO dbPeople to return!!");
-//             }
-//             if (dbPeople) {
-//               console.log(dbPeople.userName);
-//               // db.People.findOne({ where: { userName: dbPeople.userName } }).then(function(user) {
-//               //   if (!user) throw err;
-//               //   console.log(user);
-//               //   req.login(user, function(request, res) {
-//               //     res.redirect('index');
-//               //   });
-//               // });
-//               return done(null, dbPeople);
-//             }
-//             // return dbPeople;
-//           });
-//         }
-//       });
-//     },
-//   ));
-// };
-

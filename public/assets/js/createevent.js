@@ -47,8 +47,7 @@ $(function(){
             time: timeInput.val().trim(),
             description: descriptionInput.val().trim(),
             groupId: groupSelect.val()
- 
-        };
+         };
 
         if (updating) {
             newEvent.id = eventId;
@@ -127,11 +126,8 @@ function updateEvent(event){
         $.ajax("/api/events", {
             type: "POST",
             data: newEvent
-        }).then(function(){
+        }).then(function () {
             console.log("Created New Event");
-            location.reload(); 
+            location.reload();
         });
     })
-
-
-

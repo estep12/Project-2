@@ -25,30 +25,30 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/api/people", 
-    passport.authenticate('local', { failureRedirect: '/signup' }),
-    function(req, res) {
-      res.redirect('/');
-    },
-  );
-  // app.post("/api/people",
-  //   passport.authenticate('signup', {
-  //     successRedirect: '/',
-  //     failureRedirect: '/signup',
-  //     failureFlash: false,
-  //   }),
-  // );
+  app.post("/api/people", function (req, res) {
+    db.People.create(
+      req.body,
+      {
+        include: [{
+          model: db.Group,
+          through: { attributes: [] },
+        }],
+      },
+    ).then(function (dbPeople) {
+      res.json(dbPeople);
+    });
+  });
 
   app.put("/api/people", function (req, res) {
     db.People.update(
       req.body,
       {
         where: {
-          id: req.body.id,
-        },
+          id: req.body.id
+        }
       }).then(function (dbPeople) {
-      res.json(dbPeople);
-    });
+        res.json(dbPeople)
+      })
   });
 
   app.delete("/api/people/:id", function (req, res) {
