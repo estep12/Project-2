@@ -39,5 +39,5 @@
   // app.get('/', isLoggedIn, authController.home);
 
   // app.get('/logout', authController.logout);
-};
+// };
 
