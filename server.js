@@ -2,9 +2,11 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const passport = require('passport');
 // const env = require('dotenv').load();
+
 // const bcrypt = require('bcrypt-nodejs');
 
 // authentication packages
+const passport = require('passport');
 const session = require('express-session');
 
 const app = express();
@@ -26,7 +28,7 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// For Passport
+// For Passport and Passport sessions
 app.use(session({
   secret: 'fsd889sdneroij$#^r9j2#iop9e',
   resave: false,
@@ -40,9 +42,13 @@ app.use(passport.session()); // persistant login sessions
 const flash = require('connect-flash');
 app.use(flash());
 
+app.use(flash());
+
+// Routes
 // load passport strategies
 // const Passport = require('./config/passport/passport.js');
 require('./config/passport/passport.js');
+
 require("./controller/html-routes.js")(app);
 require("./controller/events-api-routes.js")(app);
 require("./controller/groups-api-routes.js")(app);

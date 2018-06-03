@@ -29,7 +29,6 @@ $(function () {
 $(function () {
   $("#login").on("click", function (event) {
     event.preventDefault();
-
     const newLogin = {
       userName: $("#userNameLogin").val().trim(),
       password: $("#passwordLogin").val().trim(),
