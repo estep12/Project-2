@@ -1,5 +1,5 @@
 $(function(){
-    var groupSelect = $(".dropdown-group");
+    var groupSelect = $("#group");
     var nameInput = $("#validationCustom02");
     var organizerInput = "1";
     var location_addressInput = $("#validationCustom03");
