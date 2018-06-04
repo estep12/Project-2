@@ -16,11 +16,7 @@ $(function () {
       data: newSignup
     }).then(function () {
       console.log("Created New User");
-      // $.ajax("/api/people/:id", {
-      //     type: "GET",
-
-      // })
-      // location.reload();
+      window.location = "/login";
     });
   });
 });
@@ -39,6 +35,7 @@ $(function () {
       data: newLogin,
     }).then(function () {
       console.log("User Login Submitted");
+      window.location = "/";
     });
   });
 });
