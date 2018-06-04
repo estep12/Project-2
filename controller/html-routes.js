@@ -1,90 +1,87 @@
-// const authController = require('./auth-controller.js');
 
-// Routes
-// =======================================
-// module.exports = function(app, passport) {
+const passport = require('passport');
 
-//     app.get("/signup", function(req, res) {
-//         res.render("signup")
-//     });
+module.exports = function (app) {
 
-//     app.get("/login", function(req, res) {
-//         res.render("login")
-//     });
+  function authenticationMiddleware(req, res, next) {
+    console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/login');
+  }
 
-//     app.get("/", function(req, res) {
-//         res.render("index")
-//       });
+  app.get(
+    "/", authenticationMiddleware,
+    function (req, res) {
+      console.log('to homepage??');
+      res.render("index");
+    },
+  );
+  
+  //   app.get("/allEvents", function(req, res){
+  //       res.render("events")
+  //   });
 
-// // test code may not do anything =====================================
-//     app.get('/creategroup', passport.authenticate('local'), function(req, res) {
-//         res.redirect('/creategroup');
-//     });
+  app.get("/createEvent", authenticationMiddleware,
+    function (req, res) {
+      res.render("createevent")
+    },
+  );
 
-//     app.get('/createevent', passport.authenticate('local'), function(req, res) {
-//         res.redirect('/createevent');
-//     });
-//     // test code may not do anything =====================================
+  app.get("/createGroup", authenticationMiddleware,
+    function (req, res) {
+      res.render("creategroup");
+    },
+  );
+  
+  // ds: trying to render list of member usernames to group page. haven't figured out how to read data from /api/people. helppppp
+// ---------------------------------------------------------------------------
+    // app.get("/createGroup", function(req, res){
 
-//     app.post('/signup', passport.authenticate('local-signup', {
-//         successRedirect: '/',
-//         failureRedirect: '/signup',
-//     }));
+    //     res.render("creategroup")
+    // });
 
-//     app.post('/signin', passport.authenticate('local-signin', {
-//         successRedirect: '/',
-
-//         failureRedirect: '/signin',
-//     }));
-
-//     function isLoggedIn(req, res, next) {
-//         if (req.isAuthenticated()) {
-//         return next();
-//         }
-//         res.redirect('/signin');
-//     }
-
-//     app.get('/', isLoggedIn, authController.home);
-
-//     app.get('/logout', authController.logout);
     
-//     app.get("/createEvent", function(req, res) {
-//         res.render("createevent")
-//     });
+    app.get("/createGroup", authenticationMiddleware, function(req, res) {
+        var dummyUsernames = [
+            {userName: "userName-1"}, 
+            {userName: "userName-2"}, 
+        ];
+        res.render("creategroup", {members: dummyUsernames})
+     });
+// ------------------------------------------------------------------------
 
-//     app.get("/createGroup", function(req, res) {
-//         res.render("creategroup")
-//     });
+  app.get("/login", function (req, res) {
+    res.render("login")
+  });
 
-      
-// }
-module.exports = function(app){
+  app.post(
+    '/login',
+    passport.authenticate('local-signin', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true,
+      successFlash: 'Welcome',
+    }),
+  );
 
-    app.get("/", function(req, res) {
-        console.log(req.user);
-        console.log(req.isAuthenticated());
-        res.render("index")
-      });
+  app.get("/signup", function (req, res) {
+    res.render("signup")
+  });
 
-    //   app.get("/allEvents", function(req, res){
-    //       res.render("events")
-    //   });
-
-      app.get("/createEvent", function(req, res){
-        res.render("createevent")
+  app.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
+      res.redirect('/login');
     });
+  });
 
+  // app.get(
+  //   '/logout',
+  //   function (req, res) {
+  //     req.logout();
+  //     res.redirect('/login');
+  //   },
+  // );
+};
 
-    app.get("/createGroup", function(req, res){
-
-        res.render("creategroup")
-    });
-
-      app.get("/login", function(req, res){
-          res.render("login")
-      });
-
-      app.get("/signup", function(req, res){
-          res.render("signup")
-      });
-}

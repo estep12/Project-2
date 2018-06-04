@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const authController = require('./auth-controller.js');
 
 // module.exports = function(app, passport) {
@@ -41,3 +42,5 @@
   // app.get('/logout', authController.logout);
 };
 
+=======
+>>>>>>> f4853b86cfcc94518b7d32b432c4245b2355c39d

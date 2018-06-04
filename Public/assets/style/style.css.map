@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 {"version":3,"sources":["style.less","style.css"],"names":[],"mappings":"AAGA,QACE,iCAAA,AACA,eAAA,CCFD,ADKD,YACE,WAAA,AACA,iBAAA,CCHD,ADCD,eAII,WAAA,AACA,oBAAA,CCFH,ADMD,KAEE,aAAA,CCLD"}
+=======
+
+{"version":3,"sources":["style.less","style.css"],"names":[],"mappings":"AAGA,QACE,iCAAA,AACA,eAAA,CCFD,ADKD,YACE,WAAA,AACA,iBAAA,CCHD,ADCD,eAII,WAAA,AACA,oBAAA,CCFH,ADMD,KAEE,aAAA,CCLD"}
+
+>>>>>>> f4853b86cfcc94518b7d32b432c4245b2355c39d
