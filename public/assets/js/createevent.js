@@ -60,7 +60,7 @@ $(function(){
 
         function submitEvent(event) {
             $.event("/api/events", event, function() {
-                window.location.href = "/event"
+                window.location.href = "/createEvent"
             });
         }
 
@@ -93,7 +93,7 @@ $(function(){
 
         function renderGroupList(data) {
             if (!data.length) {
-                window.location.href = "//createGroup"
+                window.location.href = "/createGroup"
             }
             var rowsToAdd = [];
             for (var i = 0; i < data.length; i++){
