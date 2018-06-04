@@ -58,11 +58,13 @@ $(function () {
     }
   }
 
-  function submitEvent(event) {
-    $.event("/api/events", event, function () {
-      window.location.href = "/event"
-    });
-  }
+
+        function submitEvent(event) {
+            $.event("/api/events", event, function() {
+                window.location.href = "/createEvent"
+            });
+        }
+
 
   function getEventData(id, name) {
     var queryURL;
