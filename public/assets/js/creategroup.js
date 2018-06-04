@@ -1,12 +1,11 @@
 $(function(){
     $("#add-group").on("click", function(event){
         event.preventDefault();
-        console.log("HI");
+        // console.log("HI");
         
 
         var newGroup = {
             name: $("#submit-group-name").val().trim(),
-            users: $("#member-username").val().trim(),
             admin: "1"
 
         };
@@ -24,7 +23,7 @@ $(function(){
 
     $("#delete-member").on("click", function(event){
         event.preventDefault();
-        console.log("HI");
+        // console.log("HI");
         
         
         var id = $(this).data("id")
@@ -40,10 +39,10 @@ $(function(){
 
     $("#add-new-member").on("click", function(event){
         event.preventDefault();
-        console.log("Click");
+        // console.log("Click");
         
         var newMember = {
-            name: $("#member-username").val().trim(),
+            name: $("#add-username").val().trim(),
             admin: "1"
         }
 
@@ -54,7 +53,7 @@ $(function(){
             data: newMember
         }).then(function(){
             console.log("created new member");
-            location.reload();
+            // location.reload();
         })
     })
-});
+}); 
