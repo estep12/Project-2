@@ -1,11 +1,12 @@
 $(function(){
-    $("#submit-group").on("click", function(event){
+    $("#add-group").on("click", function(event){
         event.preventDefault();
         console.log("HI");
         
 
         var newGroup = {
-            name: $("#groupName").val().trim(),
+            name: $("#submit-group-name").val().trim(),
+            users: $("#member-username").val().trim(),
             admin: "1"
 
         };
@@ -17,7 +18,7 @@ $(function(){
             data: newGroup
         }).then(function(){
             console.log("Created New Group");
-            location.reload(); 
+            // location.reload(); 
         });
     })
 
@@ -42,7 +43,7 @@ $(function(){
         console.log("Click");
         
         var newMember = {
-            name: $("#add-username").val().trim(),
+            name: $("#member-username").val().trim(),
             admin: "1"
         }
 
