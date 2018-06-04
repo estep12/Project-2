@@ -58,6 +58,9 @@
 
       
 // }
+
+var db = require("../models");
+
 module.exports = function(app){
 
     app.get("/", function(req, res) {
@@ -74,12 +77,22 @@ module.exports = function(app){
         res.render("createevent")
     });
 
+// ds: trying to render list of member usernames to group page. haven't figured out how to read data from /api/people. helppppp
+// ---------------------------------------------------------------------------
+    // app.get("/createGroup", function(req, res){
 
-    app.get("/createGroup", function(req, res){
+    //     res.render("creategroup")
+    // });
 
-        res.render("creategroup")
-    });
-
+    
+    app.get("/createGroup", function(req, res) {
+        var dummyUsernames = [
+            {userName: "userName-1"}, 
+            {userName: "userName-2"}, 
+        ];
+        res.render("creategroup", {members: dummyUsernames})
+     });
+// ------------------------------------------------------------------------
       app.get("/logout", function(req, res){
           res.render("login")
       });
