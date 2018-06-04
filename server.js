@@ -6,7 +6,7 @@ const passport = require('passport');
 // const bcrypt = require('bcrypt-nodejs');
 
 // authentication packages
-const passport = require('passport');
+// const passport = require('passport');
 const session = require('express-session');
 
 const app = express();
