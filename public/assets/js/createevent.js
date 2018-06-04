@@ -55,18 +55,26 @@ $(function () {
     else {
       submitEvent(newEvent);
     }
-  }
+  
+          function submitEvent(event) {
+        $.ajax("/api/events", {
+            type: "POST",
+            data: newEvent
+        }).then(function () {
+            console.log("Created New Event");
+            window.location.href = "/";
+        });
+    }
+}
+        // function submitEvent(event) {
+
+        //     $.post("/api/events", event, function() {
+
+        //         window.location.href = "/createEvent"
 
 
-        function submitEvent(event) {
-
-            $.post("/api/events", event, function() {
-
-                window.location.href = "/createEvent"
-
-
-            });
-        }
+        //     });
+        // }
 
 
   function getEventData(id, name) {
@@ -125,7 +133,7 @@ function updateEvent(event){
         data: event
     })
     .then(function(){
-        window.location.href = "/index";
+        window.location.href = "/";
     })
 
         // $.ajax("/api/events", {
@@ -135,7 +143,7 @@ function updateEvent(event){
         //     console.log("Created New Event");
         //     window.location.href = "/index";
         // });
-
+}
     })
 
   // $.ajax("/api/events", {
