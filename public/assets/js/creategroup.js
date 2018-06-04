@@ -1,11 +1,11 @@
 $(function(){
-    $("#add-group").on("click", function(event){
+    $("#add-new-group").on("click", function(event){
         event.preventDefault();
         // console.log("HI");
         
 
         var newGroup = {
-            name: $("#submit-group-name").val().trim(),
+            name: $("#new-group-name").val().trim(),
             admin: "1"
 
         };
