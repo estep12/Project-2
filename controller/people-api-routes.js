@@ -45,10 +45,12 @@ module.exports = function (app) {
       {
         where: {
           id: req.body.id
-        }
-      }).then(function (dbPeople) {
-        res.json(dbPeople)
-      })
+        },
+      },
+    ).then(function (dbPeople) {
+      res.json(dbPeople);
+      res.redirect("/login");
+    });
   });
 
   app.delete("/api/people/:id", function (req, res) {

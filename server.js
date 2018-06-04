@@ -1,9 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const passport = require('passport');
 // const env = require('dotenv').load();
-
-// const bcrypt = require('bcrypt-nodejs');
 
 // authentication packages
 const passport = require('passport');
@@ -46,7 +43,6 @@ app.use(flash());
 
 // Routes
 // load passport strategies
-// const Passport = require('./config/passport/passport.js');
 require('./config/passport/passport.js');
 
 require("./controller/html-routes.js")(app);
