@@ -87,37 +87,49 @@ $(function () {
     });
   }
 
-  function getGroups() {
-    $.get("/api/groups", renderGroupList);
-  }
+        function getGroups(){
+            $.get("/api/groups", renderGroupList);
+        }
 
-  function renderGroupList(data) {
-    if (!data.length) {
-      window.location.href = "//createGroup"
-    }
-    var rowsToAdd = [];
-    for (var i = 0; i < data.length; i++) {
-      rowsToAdd.push(createGroupRow(data[i]))
-    }
-    groupSelect.empty();
-    console.log(rowsToAdd);
-    console.log(groupSelect);
-    groupSelect.append(rowsToAdd);
-    groupSelect.val(groupId)
-  }
+        function renderGroupList(data) {
+            if (!data.length) {
+                window.location.href = "/createGroup"
+            }
+            var rowsToAdd = [];
+            for (var i = 0; i < data.length; i++){
+                rowsToAdd.push(createGroupRow(data[i]))
+            }
+            groupSelect.empty();
+            console.log(rowsToAdd);
+            console.log(groupSelect);
+            groupSelect.append(rowsToAdd);
+            groupSelect.val(groupId)
+        }
 
-  function createGroupRow(group) {
-    var listOption = $("<option>");
-    listOption.attr("value", group.id);
-    listOption.text(group.name);
-    return listOption
-  }
-  // console.log(newEvent);
-  function updateEvent(event) {
+        function createGroupRow(group) {
+            var listOption = $("<option>");
+            listOption.attr("value", group.id);
+            listOption.text(group.name);
+            return listOption
+        }
+        // console.log(newEvent);
+function updateEvent(event){
     $.ajax({
-      method: "PUT",
-      url: "/api/events",
-      data: event
+        method: "PUT",
+        url: "/api/events",
+        data: event
+    })
+    .then(function(){
+        window.location.href = "/index";
+    })
+}
+        // $.ajax("/api/events", {
+        //     type: "POST",
+        //     data: newEvent
+        // }).then(function () {
+        //     console.log("Created New Event");
+        //     window.location.href = "/index";
+        // });
     })
       .then(function () {
         window.location.href = "/index";

@@ -42,6 +42,8 @@
         </div>
       </div>
     </div>
+
+
     {{!-- Display, Edit, and Delete existing group members --}}
     <div class="row">
       <div class="col-md-8 mb-3 ml-4">
@@ -61,6 +63,29 @@
         </ul>
       </div>
     </div>
+{{!-- --------------------------------------------------------------------------------------- --}}
+    {{!-- using handlebars to list members --}}
+    <div class="row">
+      <div class="col-md-8 mb-3 ml-4">
+        <h3><label class="control-label" for="field1">Group Members</label></h3>
+        <ul class="list-group">
+          
+          {{#each members}}
+          <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <div id="member-username" class="w-100">{{userName}}</div>
+                <div class="flex-shrink-1 btn-group">
+                  <button id="edit-member" class="btn btn-dark"><i>Edit</i></button>
+                  <button id="delete-member" class="btn btn-danger"><i>Delete</i></button>
+                </div>
+              </div>
+          </li>
+          {{/each}}
+
+        </ul>
+      </div>
+    </div>   
+{{!-- ---------------------------------------------------------------------------------------- --}}
     {{!-- Add new group member --}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
@@ -96,6 +121,7 @@
 
 
 <script>
+
   $(function() {
     $(document).on('click', '.btn-add', function(e) {
 
@@ -114,6 +140,7 @@
 		return false;
 	  });
   });
+
 </script>
 
 </main>
