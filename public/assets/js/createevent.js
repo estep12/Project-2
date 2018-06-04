@@ -88,12 +88,12 @@ $(function(){
         }
 
         function getGroups(){
-            $.get(".api/groups", renderGroupList);
+            $.get("/api/groups", renderGroupList);
         }
 
         function renderGroupList(data) {
             if (!data.length) {
-                window.location.href = "/groups"
+                window.location.href = "//createGroup"
             }
             var rowsToAdd = [];
             for (var i = 0; i < data.length; i++){
@@ -112,7 +112,7 @@ $(function(){
             listOption.text(group.name);
             return listOption
         }
-        console.log(newEvent);
+        // console.log(newEvent);
 function updateEvent(event){
     $.ajax({
         method: "PUT",
@@ -120,14 +120,14 @@ function updateEvent(event){
         data: event
     })
     .then(function(){
-        location.reload();
+        window.location.href = "/index";
     })
 }
-        $.ajax("/api/events", {
-            type: "POST",
-            data: newEvent
-        }).then(function () {
-            console.log("Created New Event");
-            location.reload();
-        });
+        // $.ajax("/api/events", {
+        //     type: "POST",
+        //     data: newEvent
+        // }).then(function () {
+        //     console.log("Created New Event");
+        //     window.location.href = "/index";
+        // });
     })
