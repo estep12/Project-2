@@ -1,16 +1,19 @@
 $(function(){
-    $("#add-group").on("click", function(event){
+    $("#add-new-group").on("click", function(event){
         event.preventDefault();
-        console.log("HI");
+        // console.log("HI");
         
 
         var newGroup = {
-<<<<<<< HEAD
+
             name: $("#groupName").val().trim(),
-=======
+
             name: $("#submit-group-name").val().trim(),
             users: $("#member-username").val().trim(),
->>>>>>> f4853b86cfcc94518b7d32b432c4245b2355c39d
+
+
+            name: $("#new-group-name").val().trim(),
+
             admin: "1"
 
         };
@@ -28,7 +31,7 @@ $(function(){
 
     $("#delete-member").on("click", function(event){
         event.preventDefault();
-        console.log("HI");
+        // console.log("HI");
         
         
         var id = $(this).data("id")
@@ -44,10 +47,10 @@ $(function(){
 
     $("#add-new-member").on("click", function(event){
         event.preventDefault();
-        console.log("Click");
+        // console.log("Click");
         
         var newMember = {
-            name: $("#member-username").val().trim(),
+            name: $("#add-username").val().trim(),
             admin: "1"
         }
 
@@ -58,7 +61,7 @@ $(function(){
             data: newMember
         }).then(function(){
             console.log("created new member");
-            location.reload();
+            // location.reload();
         })
     })
-});
+}); 
