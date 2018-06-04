@@ -1,69 +1,61 @@
-module.exports = function(sequelize, DataTypes) {
-    const bcrypt = require('bcrypt-nodejs');
+module.exports = function (sequelize, DataTypes) {
+  const bcrypt = require('bcrypt-nodejs');
 
-    let People = sequelize.define("People", {
-        firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
+  let People = sequelize.define("People", {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     userName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isEmail: true
-        }
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
     },
     phoneNumber: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isNumeric: true,
-            len: [10]
-        }
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+        len: [10]
+      }
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     last_login: {
-        type: DataTypes.DATE,
+      type: DataTypes.DATE,
     },
     status: {
-        type: DataTypes.ENUM('active', 'inactive'),
-        defaultValue: 'active',
+      type: DataTypes.ENUM('active', 'inactive'),
+      defaultValue: 'active',
     },
-    }, {
-        hooks: {
-            beforeCreate: function(user) {
-                const salt = bcrypt.genSaltSync();
-                user.password = bcrypt.hashSync(user.password, salt);
-            }
-        },
-        // instanceMethods: {
-        //     validPassword: function(password) {
-        //         return bcrypt.compareSync(password, this.password);
-        //     },
-        // },
+  }, {
+    hooks: {
+      beforeCreate: function (user) {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(user.password, salt);
+      },
+    },
+  });
+  People.associate = function (models) {
+    People.belongsToMany(models.Group, {
+      through: 'PeopleGroups',
+      // as: 'Group',
+      // foreignKey: 'peopleId'
     });
-    People.prototype.validPassword = function(password) {
-        return bcrypt.compareSync(password, this.password);
-    };
-    People.associate = function(models) {
-        People.belongsToMany(models.Group, {
-            through: 'PeopleGroups',
-            // as: 'Group',
-            // foreignKey: 'peopleId'
-        });
-    };
+  };
 
-    return People;
+  return People;
 };

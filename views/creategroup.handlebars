@@ -12,11 +12,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a>
+            {{!-- <a class="nav-item nav-link" href="#">My Events</a>
+            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
             <a class="nav-item nav-link" href="#">Create Group</a>
-            <a class="nav-item nav-link" href="/logout">Log Out</a>
+            <a class="nav-item nav-link" href="/login">Log In</a>
             <a class="nav-item nav-link" href="/signup">Sign Up</a>
           </div>
         </div>
@@ -31,6 +31,7 @@
   <br>
   
   <div class="form-group">
+
     {{!-- Display, Edit group name --}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
@@ -51,7 +52,7 @@
 
           <li class="list-group-item">
               <div class="d-flex align-items-center">
-                <div id="member-username" class="w-100">Member 1</div>
+                <div id="member-username" class="w-100"></div>
                 <div class="flex-shrink-1 btn-group">
                   <button id="edit-member" class="btn btn-dark"><i>Edit</i></button>
                   <button id="delete-member" class="btn btn-danger"><i>Delete</i></button>
@@ -92,7 +93,7 @@
           <div class="controls"> 
             <form role="form" autocomplete="off">
               <div class="input-group col-xs-4">
-                  <input class="form-control" name="fields[]" type="text" placeholder="Add username" />
+                  <input class="form-control" name="fields[]" type="text" id="add-username" placeholder="Add username" />
                   <button id="add-new-member"class="btn btn-success">
                     <i class="fas fa-plus"></i>
                   </button>
@@ -114,6 +115,7 @@
     
   {{!-- close form group div --}}
   </div>  
+
 {{!-- close main body container --}}
 </div> 
 
@@ -122,6 +124,7 @@
 
   $(function() {
     $(document).on('click', '.btn-add', function(e) {
+
         e.preventDefault();
         var controlForm = $('.controls form:first'),
             currentEntry = $(this).parents('.entry:first'),

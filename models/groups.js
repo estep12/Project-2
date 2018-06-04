@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Group = sequelize.define("Group", {
         name: {
             type: DataTypes.STRING,
@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        admin:  {
+        admin: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
@@ -18,8 +18,8 @@ module.exports = function(sequelize, DataTypes) {
 
         }
     });
-    Group.associate = function(models) {
-        Group.hasMany(models.Events 
+    Group.associate = function (models) {
+        Group.hasMany(models.Events
         );
         Group.belongsToMany(models.People, {
             through: 'PeopleGroups',

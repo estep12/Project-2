@@ -13,11 +13,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="/myEvents">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a>
+            {{!-- <a class="nav-item nav-link" href="/myEvents">My Events</a>
+            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="#">Create Event</a>
             <a class="nav-item nav-link" href="/creategroup">Create Group</a>
-            <a class="nav-item nav-link" href="/logout">Log Out</a>
+            <a class="nav-item nav-link" href="/login">Log In</a>
             <a class="nav-item nav-link" href="/signup">Sign Up</a>
           </div>
         </div>
@@ -28,7 +28,21 @@
 <main>
 <div class ="container">
   <h1>Group Events</h1>
-  <div class="form-group">
+  <form id="createevent">
+					<div class="form-group">
+							<label for="category">Select Group:</label>
+							<select class="custom-select" id="group">
+  						</select>
+						</div>
+    {{!-- <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle dropdown-group mb-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select a Group
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#"></a>
+  </div>
+</div> --}}
+<div class="row">
       <div class="col-md-4 mb-3">
       <label for="exampleInputFile">Upload Image</label>
       <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
@@ -37,20 +51,33 @@
   </div>  
           <div class="col-md-4 mb-3">
             <label for="validationCustom02">Event Name</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Event name" value="Event Name" required>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Event name" value="" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Date and Time</label>
+            <label for="validationCustomUsername">Date</label>
+            <div class="input-group date">
+              <div class="input-group-prepend">
+                <label for="example-datetime-local-input"></label>
+                  <input class="form-control" type="date" id="date-input">
+              </div>
+              <div class="invalid-feedback">
+                Please choose a date.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Time</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <label for="example-datetime-local-input"></label>
-                  <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  <input class="form-control" type="time" id="time-input">
               </div>
               <div class="invalid-feedback">
-                Please choose a date and time.
+                Please choose a time.
               </div>
             </div>
           </div>

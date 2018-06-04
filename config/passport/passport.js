@@ -1,90 +1,56 @@
-// load bcrypt
+const db = require('../../models');
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
 const bCrypt = require('bcrypt-nodejs');
-const User = require('../../models/people.js');
-const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = function(passport) {
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
+// Configure the local strategy for use by Passport.
+// User login
+passport.use('local-signin', new Strategy(
+  {
+    usernameField: 'userName',
+    passwordField: 'password',
+    passReqToCallback: true, // allows us to pass back the entire request to the callback
+  },
+  function(req, userName, password, cb) {
+    // console.log(userName);
+    // console.log(password);
 
+    // bCrypt hashed password check function
+    const isValidPassword = function(userPass, enteredPass) {
+      console.log('checking password');
+      return bCrypt.compareSync(enteredPass, userPass);
+    };
 
-  // used to deserialize the user
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
+    db.People.findOne({ where: { userName: userName } }).then(function (user) {
+      if (!user) {
+        console.log('checking for username');
+        console.log('userName does not exist');
+        return cb(null, false);
+      }
+      if (!isValidPassword(user.password, password)) {
+        console.log('Incorrect password.');
+        return cb(null, false);
+      }
+      console.log('looked up username');
+      return cb(null, user);
     });
+  },
+));
+
+// User signup
+
+// Configure the local strategy for use by Passport.
+passport.serializeUser(function(user, cb) {
+  console.log(`user id: ${user.id}`);
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  console.log('deserialized user');
+  db.People.findOne({ where: { id: id } }).then(function(user) {
+    // if (err) { return cb(err); }
+    cb(null, user);
   });
+});
 
-  // local signup
-  passport.use('local-signup', new LocalStrategy(
-    {
-      usernameField: 'userName',
-      passwordField: 'password',
-      passReqToCallback: true, // allows us to pass back the entire request to the callback
-    },
-
-    function(req, userName, password, done) {
-      let generateHash = function(password) {
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-      };
-
-      User.findOne({ where: { userName: userName } }).then(function(user) {
-        if (user) {
-          return done(null, false, { message: 'That username is already taken' });
-        } else {
-          let userPassword = generateHash(password);
-          var data = { 
-            email: email,
-            password: userPassword,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName
-          };
-
-          User.create(data).then(function(newUser, created) {
-            if (!newUser) {
-              return done(null,false);
-            }
-            if (newUser) {
-              return done(null, newUser);
-            }
-          });
-        }
-      });
-    },
-  ));
-
-  // LOCAL SIGNIN
-  passport.use('local-signin', new LocalStrategy(
-    {
-      // by default, local strategy uses username and password, we will override with email
-      usernameField: 'email',
-      passwordField: 'password',
-      passReqToCallback: true, // allows us to pass back the entire request to the callback
-    },
-
-    function(req, email, password, done) {
-      let User = user;
-      let isValidPassword = function(userpass, password) {
-        return bCrypt.compareSync(password, userpass);
-      };
-
-      User.findOne({ where: { email: email } }).then(function(user) {
-        if (!user) {
-          return done(null, false, { message: 'Email does not exist' });
-        }
-        if (!isValidPassword(user.password, password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-
-        let userinfo = user.get();
-
-        return done(null, userinfo);
-      }).catch(function(err) {
-        console.log('Error:', err);
-
-        return done(null, false, { message: 'Something went wrong with your Signin' });
-      });
-    },
-  ));
-};
+module.exports = passport;
