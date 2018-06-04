@@ -37,21 +37,47 @@ module.exports = function (app) {
   
   // ds: trying to render list of member usernames to group page. haven't figured out how to read data from /api/people. helppppp
 // ---------------------------------------------------------------------------
-    // app.get("/createGroup", function(req, res){
+// require("../Public/assets/js/creategroup.js");
+var groupName = [
+  {
+    "id": 3,
+    "name": "Johnson Family",
+    "admin": 1,
+    "createdAt": "2018-06-04T02:38:37.000Z",
+    "updatedAt": "2018-06-04T02:38:37.000Z",
+    "People": []
+    },
+]
 
-    //     res.render("creategroup")
-    // });
+var members = [
+  {
+  "id": 1,
+  "name": "tester",
+  "admin": 1,
+  "createdAt": "2018-06-04T02:38:37.000Z",
+  "updatedAt": "2018-06-04T02:38:37.000Z",
+  "People": []
+  },
+  {
+  "id": 2,
+  "name": "hello",
+  "admin": 1,
+  "createdAt": "2018-06-04T03:04:09.000Z",
+  "updatedAt": "2018-06-04T03:04:09.000Z",
+  "People": []
+  }
+  ];
+
+    app.get("/manageGroup", function(req, res){
+        res.render("managegroup", {members: members, groupName:groupName})
+    });
 
     
-    app.get("/createGroup", authenticationMiddleware, function(req, res) {
-        var dummyUsernames = [
-            {userName: "userName-1"}, 
-            {userName: "userName-2"}, 
-        ];
-        res.render("creategroup", {members: dummyUsernames})
+    app.get("/createGroup", function(req, res) {
+        res.render("creategroup")
      });
-// ------------------------------------------------------------------------
 
+// ------------------------------------------------------------------------
   app.get("/login", function (req, res) {
     res.render("login")
   });
