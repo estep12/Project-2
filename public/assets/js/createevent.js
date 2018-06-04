@@ -21,7 +21,8 @@ $(function(){
         getEventData(eventId, "event");
       }
 
-    else if (url.indexOf("?group_id=") !== -1) {
+    else 
+    if (url.indexOf("?people_id=") !== -1) {
         groupId = url.split("=")[1];
       }
     
@@ -59,8 +60,8 @@ $(function(){
         }
 
         function submitEvent(event) {
-            $.event("/api/events", event, function() {
-                window.location.href = "/event"
+            $.post("/api/events", event, function() {
+                window.location.href = "/"
             });
         }
 
@@ -93,7 +94,7 @@ $(function(){
 
         function renderGroupList(data) {
             if (!data.length) {
-                window.location.href = "//createGroup"
+                window.location.href = "/createGroup"
             }
             var rowsToAdd = [];
             for (var i = 0; i < data.length; i++){
