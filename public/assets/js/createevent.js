@@ -61,7 +61,9 @@ $(function () {
         function submitEvent(event) {
 
             $.post("/api/events", event, function() {
+
                 window.location.href = "/createEvent"
+
 
             });
         }
@@ -133,11 +135,9 @@ function updateEvent(event){
         //     console.log("Created New Event");
         //     window.location.href = "/index";
         // });
-    // })
-    //   .then(function () {
-    //     window.location.href = "/index";
-    //   })
-  }
+
+    })
+
   // $.ajax("/api/events", {
   //     type: "POST",
   //     data: newEvent
@@ -145,4 +145,4 @@ function updateEvent(event){
   //     console.log("Created New Event");
   //     window.location.href = "/index";
   // });
-})
+// })
