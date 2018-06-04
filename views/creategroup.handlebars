@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="/index">Home <span class="sr-only">(current)</span></a>
             {{!-- <a class="nav-item nav-link" href="#">My Events</a>
             <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
@@ -27,17 +27,16 @@
 
 <main>
 <div class ="container">
-  <h1>Manage Your Group</h1>
+  <h1>Create a New Group</h1>
   <br>
   
   <div class="form-group">
 
-    {{!-- Display, Edit group name --}}
+    {{!-- Enter new group name --}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
-        <h3><label for="validationCustom02">Group Name</label></h3>
-        <input type="text" class="form-control" id="submit-group-name" placeholder="Group name" value="" required>
-        <button id="add-group" class="btn btn-dark"><i>Submit Group</i></button>
+        {{!-- <h3><label>Group Name</label></h3> --}}
+        <input type="text" class="form-control" id="new-group-name" placeholder="Group name" required>
         <div class="valid-feedback">
           That's a great group name!
         </div>
@@ -45,72 +44,13 @@
     </div>
 
 
-    {{!-- Display, Edit, and Delete existing group members --}}
-    <div class="row">
-      <div class="col-md-8 mb-3 ml-4">
-        <h3><label class="control-label" for="field1">Group Members</label></h3>
-        <ul class="list-group">
-
-          <li class="list-group-item">
-              <div class="d-flex align-items-center">
-                <div id="member-username" class="w-100"></div>
-                <div class="flex-shrink-1 btn-group">
-                  <button id="edit-member" class="btn btn-dark"><i>Edit</i></button>
-                  <button id="delete-member" class="btn btn-danger"><i>Delete</i></button>
-                </div>
-              </div>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-{{!-- --------------------------------------------------------------------------------------- --}}
-    {{!-- using handlebars to list members --}}
-    <div class="row">
-      <div class="col-md-8 mb-3 ml-4">
-        <h3><label class="control-label" for="field1">Group Members</label></h3>
-        <ul class="list-group">
-          
-          {{#each members}}
-          <li class="list-group-item">
-              <div class="d-flex align-items-center">
-                <div id="member-username" class="w-100">{{userName}}</div>
-                <div class="flex-shrink-1 btn-group">
-                  <button id="edit-member" class="btn btn-dark"><i>Edit</i></button>
-                  <button id="delete-member" class="btn btn-danger"><i>Delete</i></button>
-                </div>
-              </div>
-          </li>
-          {{/each}}
-
-        </ul>
-      </div>
-    </div>   
-{{!-- ---------------------------------------------------------------------------------------- --}}
-    {{!-- Add new group member --}}
-    <div class="row">
-      <div class="col-md-4 mb-3 ml-4">
-        <div class="control-group" id="fields">
-          <div class="controls"> 
-            <form role="form" autocomplete="off">
-              <div class="input-group col-xs-4">
-                  <input class="form-control" name="fields[]" type="text" id="add-username" placeholder="Add username" />
-                  <button id="add-new-member"class="btn btn-success">
-                    <i class="fas fa-plus"></i>
-                  </button>
-              </div>
-            </form>
-            <br>
-            <small>Press <i class="fas fa-plus"> </i> to add a group member!</small>
-          </div>
-        </div>
-      </div>
-    </div>
     <br>
-    {{!-- Take user back to dashboard --}}
+    {{!-- Take user to manage group page--}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
-        <input class="btn btn-dark" type="submit" value="Done, Go Back to Dashboard">
+        <form>
+        <input id="add-new-group" class="btn btn-dark" type="button" value="Submit" onclick="window.location.href='/managegroup'"/>
+        </form>
       </div>
     </div>
     
@@ -123,24 +63,6 @@
 
 <script>
 
-  $(function() {
-    $(document).on('click', '.btn-add', function(e) {
-
-        e.preventDefault();
-        var controlForm = $('.controls form:first'),
-            currentEntry = $(this).parents('.entry:first'),
-            newEntry = $(currentEntry.clone()).appendTo(controlForm);
-        newEntry.find('input').val('');
-        controlForm.find('.entry:not(:last) .btn-add')
-            .removeClass('btn-add').addClass('btn-remove')
-            .removeClass('btn-success').addClass('btn-danger')
-            .html('<i class="fas fa-minus"></i>');
-    }).on('click', '.btn-remove', function(e) {
-		$(this).parents('.entry:first').remove();
-		e.preventDefault();
-		return false;
-	  });
-  });
 
 </script>
 

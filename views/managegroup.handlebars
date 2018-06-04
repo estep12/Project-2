@@ -1,0 +1,133 @@
+
+<header>
+  <div class="container">
+    <div class="navbar centered">
+      <a class="navbar-brand" href="#">
+        <img src="assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families.">
+      </a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-right">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            {{!-- <a class="nav-item nav-link" href="#">My Events</a>
+            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
+            <a class="nav-item nav-link" href="/createevent">Create Event</a>
+            <a class="nav-item nav-link" href="#">Create Group</a>
+            <a class="nav-item nav-link" href="/login">Log In</a>
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class ="container">
+  <h1>Manage Your Group</h1>
+  <br>
+  
+  <div class="form-group">
+
+    {{!-- Display, Edit group name --}}
+    <div class="row">
+      <div class="col-md-8 mb-3 ml-4">
+        <h3><label for="validationCustom02">Group Name</label></h3>
+
+          {{#each groupName}}
+          <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <div id="member-username" class="w-100">{{name}}</div>
+                <div class="flex-shrink-1 btn-group">
+                  <button id="edit-group-name" class="btn btn-dark"><i>Edit Name</i></button>
+                </div>
+              </div>
+          </li>
+          {{/each}}
+          
+      </div>
+    </div>
+
+{{!-- --------------------------------------------------------------------------------------- --}}
+    {{!-- using handlebars to display group members and the option to remove member from group--}}
+    <div class="row">
+      <div class="col-md-8 mb-3 ml-4">
+        <h3><label class="control-label" for="field1">Group Members</label></h3>
+        <ul class="list-group">
+          
+          {{#each members}}
+          <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <div id="member-username" class="w-100">{{name}}</div>
+                <div class="flex-shrink-1 btn-group">
+                  <button id="delete-member" class="btn btn-danger"><i>Remove</i></button>
+                </div>
+              </div>
+          </li>
+          {{/each}}
+
+        </ul>
+      </div>
+    </div>   
+{{!-- ---------------------------------------------------------------------------------------- --}}
+    {{!-- Add new group member --}}
+    <div class="row">
+      <div class="col-md-4 mb-3 ml-4">
+        <div class="control-group" id="fields">
+          <div class="controls"> 
+            <form role="form" autocomplete="off">
+              <div class="input-group col-xs-4">
+                  <input class="form-control" name="fields[]" type="text" id="add-username" placeholder="Add username" />
+                  <button id="add-new-member"class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                  </button>
+              </div>
+            </form>
+            <br>
+            <small>Press <i class="fas fa-plus"> </i> to add a group member!</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    {{!-- Take user back to dashboard --}}
+    <div class="row">
+      <div class="col-md-4 mb-3 ml-4">
+        <input class="btn btn-dark" type="submit" value="Done, Go Back to Dashboard">
+      </div>
+    </div>
+    
+  {{!-- close form group div --}}
+  </div>  
+
+{{!-- close main body container --}}
+</div> 
+
+
+<script>
+
+  $(function() {
+    $(document).on('click', '.btn-add', function(e) {
+
+        e.preventDefault();
+        var controlForm = $('.controls form:first'),
+            currentEntry = $(this).parents('.entry:first'),
+            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+        newEntry.find('input').val('');
+        controlForm.find('.entry:not(:last) .btn-add')
+            .removeClass('btn-add').addClass('btn-remove')
+            .removeClass('btn-success').addClass('btn-danger')
+            .html('<i class="fas fa-minus"></i>');
+    }).on('click', '.btn-remove', function(e) {
+		$(this).parents('.entry:first').remove();
+		e.preventDefault();
+		return false;
+	  });
+  });
+
+</script>
+
+</main>

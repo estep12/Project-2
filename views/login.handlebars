@@ -10,11 +10,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            {{!-- <a class="nav-item nav-link" href="/myEvents">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
-            <a class="nav-item nav-link" href="/createEvent">Create Event</a>
-            <a class="nav-item nav-link" href="/creategroup">Create Group</a>
+            {{!-- <a class="nav-item nav-link active" href="/">Dashboard <span class="sr-only">(current)</span></a> --}}
             <a class="nav-item nav-link" href="#">Log in</a>
             <a class="nav-item nav-link" href="/signup">Sign Up</a>
           </div>
@@ -24,48 +20,45 @@
   </div>
 </header>
 <main>    
-  <div class="container">
-    <div class="jumbotron">
-      <div class="wrapper">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="display-4">Line up your Life!</h1>
-            <p class="lead-1-md">Line up makes it easy to create events, connect with friends, and remind everyone of those upcoming special events</p>
-            <hr class="my-4">
-            <p>Login below or <a href="/signup">Create an Account Here</a></p>
-          </div>
-          {{!-- <div class="col-md-6"> --}}
-            {{!-- Fill space with Something! --}}
-          {{!-- </div> --}}
+  <div class="jumbotron">
+    <div class="container wrapper">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Line Up your Life!</h1>
+          <p class="lead-1-md">Line Up makes it easy to create events, connect with friends, and remind everyone of those upcoming special events.</p>
+          <p>Login below or <a href="/signup">Create an Account Here.</a></p>
+          <hr class="my-4">
         </div>
       </div>
     </div>
-    <form class="needs-validation" novalidate>
-      <div class="container">
-        <div class="row">
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="userNameLogin">Username</label>
-              <div class="input-group">
-                <input type="text" class="form-control" id="userNameLogin" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please enter your username.
+    <div class="container">
+      <form class="needs-validation" novalidate>
+        <div class="container">
+          <div class="row">
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="userNameLogin">Username</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="userNameLogin" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                  <div class="invalid-feedback">
+                    Please enter your username.
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="passwordLogin">Password</label>
-              <div class="input-group">
-                <input type="password" class="form-control" id="passwordLogin" placeholder="password" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Enter your password.
+              <div class="col-md-6 mb-3">
+                <label for="passwordLogin">Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="passwordLogin" placeholder="Password" aria-describedby="inputGroupPrepend" required>
+                  <div class="invalid-feedback">
+                    Enter your password.
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button class="btn btn-primary" id="login" type="submit" value="Submit">Submit form</button>
-      </div>
-    </form>
+          <button class="btn btn-primary" id="login" type="submit" value="Submit">Login</button>
+      </form>
+    </div>
   </div>
 </main>

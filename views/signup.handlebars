@@ -10,13 +10,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            {{!-- <a class="nav-item nav-link" href="/myEvents">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
-            <a class="nav-item nav-link" href="/createEvent">Create Event</a>
-            <a class="nav-item nav-link" href="/creategroup">Create Group</a>
-            <a class="nav-item nav-link" href="/login">Log In</a>
-            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+            {{!-- <a class="nav-item nav-link active" href="/">Dashboard <span class="sr-only">(current)</span></a> --}}
+            <a class="nav-item nav-link" href="/Login">Log in</a>
+            <a class="nav-item nav-link" href="#">Sign Up</a>
           </div>
         </div>
       </nav>
@@ -24,10 +20,19 @@
   </div>
 </header>
 <main>
-
-<div class ="container">
-  <h2>{{title}}</h2>
-    <form class="needs-validation" novalidate>
+  <div class="jumbotron">
+    <div class="container wrapper">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Sign Up to Line Up!</h1>
+          {{!-- <p class="lead-1-md">Line up makes it easy to create events, connect with friends, and remind everyone of those upcoming special events</p> --}}
+          <p>Enter your information below to create a new user account.</a></p>
+          <hr class="my-4">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <form class="needs-validation" novalidate>
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="firstName">First name</label>
@@ -43,7 +48,6 @@
               Looks good!
             </div>
           </div>
-          
         </div>
         <div class="form-row">
           <div class="col-md-4 mb-3">
@@ -67,7 +71,8 @@
           <div class="col-md-4 mb-3">
             <label for="passwordConfirm">Re-enter Password</label>
             <div class="input-group">
-              <input type="password" class="form-control" id="passwordConfirm" placeholder="password" aria-describedby="inputGroupPrepend" required>
+              <input type="password" class="form-control" id="passwordConfirm" placeholder="password" aria-describedby="inputGroupPrepend"
+                required>
               <div class="invalid-feedback">
                 Please re-enter your password.
               </div>
@@ -104,16 +109,5 @@
         <button class="btn btn-primary" id="sign-up" type="submit">Submit form</button>
       </form>
     </div>
- <div class="container">
-    <a id="social-links" href="https://www.google.com/" target="_blank"><div class="iconholder">
-      <i class="fab fa-google"></i>
-        </div></a>
-    <a id="social-links" href="https://www.facebook.com/" target="_blank"><div class="iconholder">
-      <i class="fab fa-facebook-square"></i>
-    </div></a>
-    <a id="social-links" href="https://www.twitter.com/" target="_blank"><div class="iconholder">
-      <i class="fab fa-twitter"></i>
-    </div></a>
-</div>
-
+  </div>
 </main>
