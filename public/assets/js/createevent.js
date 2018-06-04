@@ -30,7 +30,6 @@ $(function () {
   function handleFormSubmit(event) {
     event.preventDefault();
 
-
     // $("#submit-event").on("click", function(event){
     //     event.preventDefault();
 
@@ -60,8 +59,10 @@ $(function () {
 
 
         function submitEvent(event) {
-            $.event("/api/events", event, function() {
-                window.location.href = "/createEvent"
+
+            $.post("/api/events", event, function() {
+                window.location.href = "/"
+
             });
         }
 
