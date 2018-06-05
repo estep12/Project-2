@@ -54,6 +54,8 @@ module.exports = function (app) {
 
   //     })
 
+
+
   //   });
   // });
 
@@ -164,7 +166,7 @@ module.exports = function (app) {
   app.post(
     '/login',
     passport.authenticate('local-signin', {
-      successRedirect: '/',
+      successRedirect: '/index',
       failureRedirect: '/login',
       failureFlash: true,
       successFlash: 'Welcome',
