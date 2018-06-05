@@ -1,4 +1,4 @@
-
+var db = require("../models")
 const passport = require('passport');
 
 module.exports = function (app) {
@@ -35,7 +35,7 @@ module.exports = function (app) {
     }
     ]
 
-  app.get("/", function (req, res) {
+  app.get("/index", function (req, res) {
       res.render("index", {events:events});
     },
   );
@@ -90,12 +90,43 @@ var members = [
   ];
 
     app.get("/manageGroup", function(req, res){
-        res.render("managegroup", {members: members, groupName:groupName})
+      db.Group.findAll({
+        include:[{
+          model:db.Events,
+          model:db.People,
+          through: {attributes: []}
+        }]
+      }).then(function(dbGroup){
+        var test = "hi"
+        var indexGroupId = 0;
+        db.People.findAll({
+          include: [{
+            model: db.Group,
+            through: { attributes: [] }
+          }]
+        }).then(function(dbPeople){
+          console.log(test);
+          res.render("managegroup", {groupName:dbGroup[indexGroupId], members:dbPeople})
+  
+        })
+
+      });
     });
+
+       
 
     
     app.get("/createGroup", function(req, res) {
-        res.render("creategroup")
+      db.People.findAll({
+        include: [{
+          model: db.Group,
+          through: { attributes: [] }
+        }]
+      }).then(function(dbPeople){
+        res.render("creategroup", {members:dbPeople})
+
+      });
+
      });
 
 
