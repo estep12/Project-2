@@ -36,7 +36,13 @@ module.exports = function (app) {
     ]
 
   app.get("/index", function (req, res) {
-      res.render("index", {events:events});
+    db.Events.findAll({ include: [db.Group] })
+    .then(function (dbEvents) {
+      console.log(dbEvents);
+      console.log("type of data for dbEvents:",typeof(dbEvents));
+      res.render("index", dbEvents)
+    });
+      // res.render("index", {events:events});
     },
   );
   
@@ -139,7 +145,7 @@ var members = [
   app.post(
     '/login',
     passport.authenticate('local-signin', {
-      successRedirect: '/',
+      successRedirect: '/index',
       failureRedirect: '/login',
       failureFlash: true,
       successFlash: 'Welcome',
