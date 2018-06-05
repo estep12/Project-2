@@ -10,7 +10,8 @@ $(function () {
   var descriptionInput = $("#exampleFormControlTextarea1");
   var createeventForm = $("#createevent")
 
-  $(createeventForm).on("submit", handleFormSubmit);
+  $("#createevent").on("submit", handleFormSubmit);
+
   var url = window.location.search;
   var peopleId;
   var groupId;
@@ -45,9 +46,11 @@ $(function () {
       date: dateInput.val().trim(),
       time: timeInput.val().trim(),
       description: descriptionInput.val().trim(),
-      groupId: groupSelect.val()
+      GroupId: groupSelect.val()
     };
 
+    console.log(newEvent);
+    
     if (updating) {
       newEvent.id = eventId;
       updateEvent(newEvent);
@@ -62,7 +65,7 @@ $(function () {
             data: newEvent
         }).then(function () {
             console.log("Created New Event");
-            window.location.href = "/";
+            window.location.href = "/index";
         });
     }
 }
@@ -100,6 +103,7 @@ $(function () {
     });
   }
 
+      //these three functions create option elements in select group dropdown
         function getGroups(){
             $.get("/api/groups", renderGroupList);
         }
@@ -125,6 +129,8 @@ $(function () {
             listOption.text(group.name);
             return listOption
         }
+
+
         // console.log(newEvent);
 function updateEvent(event){
     $.ajax({

@@ -19,7 +19,8 @@ module.exports = function(app){
     });
  
     app.post("/api/events", function(req, res){
-        db.Events.create(req.body,).then(function(dbEvents){
+        console.log(req.body)
+        db.Events.create(req.body).then(function(dbEvents){
             res.json(dbEvents)
         });
     });
