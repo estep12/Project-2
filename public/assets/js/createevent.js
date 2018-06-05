@@ -16,14 +16,14 @@ $(function () {
   var groupId;
   var updating = false;
 
-  if (url.indexOf("?event_id=") !== -1) {
-    eventId = url.split("=")[1];
-    getEventData(eventId, "event");
-  }
+//   if (url.indexOf("?event_id=") !== -1) {
+//     eventId = url.split("=")[1];
+//     getEventData(eventId, "event");
+//   }
 
-  else if (url.indexOf("?group_id=") !== -1) {
-    groupId = url.split("=")[1];
-  }
+//   else if (url.indexOf("?group_id=") !== -1) {
+//     groupId = url.split("=")[1];
+//   }
 
   getGroups();
 
