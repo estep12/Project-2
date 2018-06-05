@@ -45,7 +45,7 @@ module.exports = function(app){
         ).then(function(group){
             let people = req.body.peopleIds.map((id) => {
             // let people = [1,6].map((id) => {
-                return db.People.findById(id)
+                return db.People.findById(parseInt(id))
             })
             return {group: group, people: Promise.all(people)}
         })
