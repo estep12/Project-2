@@ -3,7 +3,7 @@
   <div class="container">
     <div class="navbar centered">
       <a class="navbar-brand" href="#">
-        <img src="assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families.">
+        <img src="./assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families.">
       </a>
       <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-right">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,16 +37,16 @@
       <div class="col-md-8 mb-3 ml-4">
         <h3><label for="validationCustom02">Group Name</label></h3>
 
-          {{#each groupName}}
+          {{!-- {{#each groupName}} --}}
           <li class="list-group-item">
               <div class="d-flex align-items-center">
-                <div id="member-username" class="w-100">{{name}}</div>
+                <div id="member-username" class="w-100">{{groupName.name}}</div>
                 <div class="flex-shrink-1 btn-group">
                   <button id="edit-group-name" class="btn btn-dark"><i>Edit Name</i></button>
                 </div>
               </div>
           </li>
-          {{/each}}
+          {{!-- {{/each}} --}}
           
       </div>
     </div>
@@ -61,7 +61,7 @@
           {{#each members}}
           <li class="list-group-item">
               <div class="d-flex align-items-center">
-                <div id="member-username" class="w-100">{{name}}</div>
+                <div id="member-username" class="w-100">{{userName}}</div>
                 <div class="flex-shrink-1 btn-group">
                   <button id="delete-member" class="btn btn-danger"><i>Remove</i></button>
                 </div>
@@ -96,7 +96,7 @@
     {{!-- Take user back to dashboard --}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
-        <input class="btn btn-dark" type="submit" value="Done, Go Back to Dashboard">
+        <a href="/"><input class="btn btn-dark" type="submit" value="Done, Go Back to Dashboard"></a>
       </div>
     </div>
     

@@ -11,134 +11,155 @@ module.exports = function (app) {
     res.redirect('/login');
   }
 
-  var events = [
-    {
-    "id": 1,
-    "name": "Department Retreat",
-    "organizer": "1",
-    "location_address": "null",
-    "city": "null",
-    "state": "null",
-    "date": "2018-06-09T00:00:00.000Z",
-    "time": "12:00:00",
-    "description": "null",
-    "createdAt": "2018-05-09T22:13:20.000Z",
-    "updatedAt": "2018-05-09T22:13:40.000Z",
-    "GroupId": 1,
-    "Group": {
-    "id": 1,
-    "name": "Johnson Family",
-    "admin": 1,
-    "createdAt": "2018-06-04T18:29:33.000Z",
-    "updatedAt": "2018-06-04T18:29:33.000Z"
-    }
-    }
-    ]
+  // Version 1 (without id's in address)-----------------------------------------------------------------------
 
-  app.get("/index", function (req, res) {
-    db.Events.findAll({ include: [db.Group] })
-    .then(function (dbEvents) {
-      console.log(dbEvents);
-      console.log("type of data for dbEvents:",typeof(dbEvents));
-      res.render("index", dbEvents)
-    });
-      // res.render("index", {events:events});
-    },
-  );
-  
-  //   app.get("/allEvents", function(req, res){
-  //       res.render("events")
+  // app.get("/", function (req, res) {
+
+  //   db.Group.findAll({
+  //     include: [{
+  //       model: db.Events,
+  //       model: db.People,
+  //       through: { attributes: [] },
+  //     }]
+  //   }).then(function (dbGroup) {
+  //     db.Events.findAll({ include: [db.Group]
+  //     }).then(function(dbEvents){
+  //       res.render("index", { groupName: dbGroup, events: dbEvents })
+  //     })
   //   });
+  // });
 
-  app.get("/createEvent", authenticationMiddleware,
-    function (req, res) {
-      res.render("createevent")
-    },
-  );
+  // app.get("/createEvent", authenticationMiddleware, function (req, res) {
+  //   res.render("createevent")
+  // });
 
-  // app.get("/createGroup", authenticationMiddleware,
+  // app.get("/manageGroup/:id", function(req, res){
+  //   db.Group.findAll({
+  //     include:[{
+  //       model:db.Events,
+  //       model:db.People,
+  //       through: {attributes: []}
+  //     }]
+  //   }).then(function(dbGroup){
+  //     var test = "hi"
+  //     var indexGroupId = 0;
+  //     db.People.findAll({
+  //       include: [{
+  //         model: db.Group,
+  //         through: { attributes: [] }
+  //       }]
+  //     }).then(function(dbPeople){
+  //       console.log(test);
+  //       res.render("managegroup", {groupName:dbGroup[0], members:dbPeople})
+
+  //     })
+
+
+
+  //   });
+  // });
+
+  // app.get("/createGroup", function(req, res) {
+  //   db.People.findAll({
+  //     include: [{
+  //       model: db.Group,
+  //       through: { attributes: [] }
+  //     }]
+  //   }).then(function(dbPeople){
+  //     res.render("creategroup", {members:dbPeople})
+  //   });
+  //  });
+
+  // app.get("/login", function (req, res) {
+  //   res.render("login")
+  // });
+
+  // app.post(
+  //   '/login',
+  //   passport.authenticate('local-signin', {
+  //     successRedirect: '/',
+  //     failureRedirect: '/login',
+  //     failureFlash: true,
+  //     successFlash: 'Welcome',
+  //   }),
+  // );
+
+  // app.get("/signup", function (req, res) {
+  //   res.render("signup")
+  // });
+
+  // app.get('/logout', function (req, res) {
+  //   req.session.destroy(function (err) {
+  //     res.redirect('/login');
+  //   });
+  // });
+
+  // app.get(
+  //   '/logout',
   //   function (req, res) {
-  //     res.render("creategroup");
+  //     req.logout();
+  //     res.redirect('/login');
   //   },
   // );
-  
-  // ds: trying to render list of member usernames to group page. haven't figured out how to read data from /api/people. helppppp
-// ---------------------------------------------------------------------------
-// require("../Public/assets/js/creategroup.js");
-var groupName = [
-  {
-    "id": 3,
-    "name": "Johnson Family",
-    "admin": 1,
-    "createdAt": "2018-06-04T02:38:37.000Z",
-    "updatedAt": "2018-06-04T02:38:37.000Z",
-    "People": []
-    },
-]
 
-var members = [
-  {
-  "id": 1,
-  "name": "tester",
-  "admin": 1,
-  "createdAt": "2018-06-04T02:38:37.000Z",
-  "updatedAt": "2018-06-04T02:38:37.000Z",
-  "People": []
-  },
-  {
-  "id": 2,
-  "name": "hello",
-  "admin": 1,
-  "createdAt": "2018-06-04T03:04:09.000Z",
-  "updatedAt": "2018-06-04T03:04:09.000Z",
-  "People": []
-  }
-  ];
+  // End of Version 1
+  // ------------------------------------------------------------------------------------------------------
 
-    app.get("/manageGroup", function(req, res){
-      db.Group.findAll({
-        include:[{
-          model:db.Events,
-          model:db.People,
-          through: {attributes: []}
-        }]
-      }).then(function(dbGroup){
-        var test = "hi"
-        var indexGroupId = 0;
-        db.People.findAll({
-          include: [{
-            model: db.Group,
-            through: { attributes: [] }
-          }]
-        }).then(function(dbPeople){
-          console.log(test);
-          res.render("managegroup", {groupName:dbGroup[indexGroupId], members:dbPeople})
-  
-        })
 
-      });
+  // Version 2 (with id's in address)-----------------------------------------------------------------------
+  app.get("/:id", function (req, res) {
+    var id = req.params.id;
+
+    db.People.findAll({
+      include: [{
+        model: db.Group,
+        through: { attributes: [] }
+      }]
+    }).then(function (dbPeople) {
+      db.Events.findAll({ include: [db.Group]
+      }).then(function(dbEvents){
+        res.render("index", { groupName: dbPeople[id-1].Groups, events: dbEvents, peopleId: id})
+      })
     });
+  });
 
-       
+  app.get("/createEvent/:id", authenticationMiddleware, function (req, res) {
+    res.render("createevent")
+  });
 
-    
-    app.get("/createGroup", function(req, res) {
+  app.get("/manageGroup/:id", function (req, res) {
+    db.Group.findAll({
+      include: [{
+        model: db.Events,
+        model: db.People,
+        through: { attributes: [] }
+      }]
+    }).then(function (dbGroup) {
+      var id = req.params.id;
       db.People.findAll({
         include: [{
           model: db.Group,
           through: { attributes: [] }
         }]
-      }).then(function(dbPeople){
-        res.render("creategroup", {members:dbPeople})
+      }).then(function (dbPeople) {
+        res.render("managegroup", { groupName: dbGroup[id-1], members: dbGroup[id-1].People, peopleId: id})
+      })
+    });
+  });
 
-      });
+  app.get("/createGroup/:id", function (req, res) {
+    var id = req.params.id;
+    db.People.findAll({
+      include: [{
+        model: db.Group,
+        through: { attributes: [] }
+      }]
+    }).then(function (dbPeople) {
+      res.render("creategroup", { members: dbPeople, peopleId: id})
+    });
+  });
 
-     });
-
-
-
-// ------------------------------------------------------------------------
-  app.get("/login", function (req, res) {
+  app.get("/login/:id", function (req, res) {
     res.render("login")
   });
 
@@ -152,21 +173,17 @@ var members = [
     }),
   );
 
-  app.get("/signup", function (req, res) {
+  app.get("/signup/:id", function (req, res) {
     res.render("signup")
   });
 
-  app.get('/logout', function (req, res) {
+  app.get('/logout/:id', function (req, res) {
     req.session.destroy(function (err) {
       res.redirect('/login');
     });
   });
 
-  // app.get(
-  //   '/logout',
-  //   function (req, res) {
-  //     req.logout();
-  //     res.redirect('/login');
-  //   },
-  // );
+  // End of Version 2
+  // ------------------------------------------------------------------------------------------------------
+
 };

@@ -1,8 +1,6 @@
 $(function(){
     $("#add-new-group").on("click", function(event){
-        event.preventDefault();
-        // console.log("HI");
-        
+        event.preventDefault();        
 
         var newGroup = {
             name: $("#new-group-name").val().trim(),
@@ -10,13 +8,20 @@ $(function(){
 
         };
 
-        console.log(newGroup);
+        // console.log($($("input:checked")[0]).attr("id"));
+        var checked = $("input:checked")
+        var peopleIds = [];
+        for(let i = 0; i < checked.length; i++) {
+            peopleIds.push($(checked[i]).attr("id"))
+        }
+        
+        // console.log(peopleIds)
 
-        var body = {newGroup: newGroup, peopleIds: [1,6]}
+        var body = {newGroup: newGroup, peopleIds: peopleIds}
 
         $.ajax("/api/groups", {
             type: "POST",
-            data: newGroup
+            data: body
         }).then(function(data){
             console.log("Created New Group");
             $("body").text(data)
@@ -40,23 +45,23 @@ $(function(){
         })
     });
 
-    $("#add-new-member").on("click", function(event){
-        event.preventDefault();
-        // console.log("Click");
+    // $("#add-new-member").on("click", function(event){
+    //     event.preventDefault();
+    //     // console.log("Click");
         
-        var newMember = {
-            name: $("#add-username").val().trim(),
-            admin: "1"
-        }
+    //     var newMember = {
+    //         name: $("#add-username").val().trim(),
+    //         admin: "1"
+    //     }
 
-        console.log(newMember);
+    //     console.log(newMember);
         
-        $.ajax("/api/groups", {
-            type: "POST",
-            data: newMember
-        }).then(function(){
-            console.log("created new member");
-            // location.reload();
-        })
-    })
+    //     $.ajax("/api/groups", {
+    //         type: "POST",
+    //         data: newMember
+    //     }).then(function(){
+    //         console.log("created new member");
+    //         // location.reload();
+    //     })
+    // })
 }); 

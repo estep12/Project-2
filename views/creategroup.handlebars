@@ -73,7 +73,10 @@
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
         <form>
-          <input id="add-new-group" class="btn btn-dark" type="button" value="Submit" onclick="window.location.href='/managegroup'"/>
+          {{!-- Version 1 (without id's--}}
+          {{!-- <input id="add-new-group" class="btn btn-dark" type="button" value="Submit" onclick="window.setTimeout(window.location.href='/', 3000)"/> --}}
+          {{!-- Version 2 (with Id's) --}}
+          <input id="add-new-group" class="btn btn-dark" type="button" value="Submit" onclick="window.setTimeout(window.location.href='/{{peopleId}}', 3000)"/>
         </form>
       </div>
     </div>
