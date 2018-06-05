@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
         Group.hasMany(models.Events
         );
         Group.belongsToMany(models.People, {
-            through: 'PeopleGroups',
+            through: 'PeopleGroups'
             // as: 'People',
             // foreignKey: 'groupId'
         });

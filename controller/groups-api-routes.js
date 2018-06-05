@@ -24,19 +24,43 @@ module.exports = function(app){
         });
     });
 
+    // app.post("/api/groups", function(req, res){
+    //     db.Group.create(
+    //         req.body,
+    //         {
+    //             include: [{
+    //                 model: db.Events,
+    //                 model: db.People,
+    //                 through: {attributes: []}
+    //             }]
+    //         }
+    //     ).then(function(dbGroup){
+    //         res.json(dbGroup)
+    //     })
+    // });
+
     app.post("/api/groups", function(req, res){
         db.Group.create(
-            req.body,
-            {
-                include: [{
-                    model: db.Events,
-                    model: db.People,
-                    through: {attributes: []}
-                }]
-            }
-        ).then(function(dbGroup){
-            res.json(dbGroup)
+            req.body.newGroup
+        ).then(function(group){
+            let people = req.body.peopleIds.map((id) => {
+            // let people = [1,6].map((id) => {
+                return db.People.findById(id)
+            })
+            return {group: group, people: Promise.all(people)}
         })
+        .then((fulfilledPromise) => {
+            let group = fulfilledPromise.group
+            fulfilledPromise.people.then(people => {
+                return group.setPeople(people)
+            })
+            .then((groupPeopleData) => {
+                console.log(groupPeopleData)
+                res.json(groupPeopleData)
+            })
+            
+        })
+        
     });
 
     app.put("/api/groups", function(req, res){
