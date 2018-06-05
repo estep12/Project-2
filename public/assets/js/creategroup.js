@@ -12,11 +12,14 @@ $(function(){
 
         console.log(newGroup);
 
+        var body = {newGroup: newGroup, peopleIds: [1,6]}
+
         $.ajax("/api/groups", {
             type: "POST",
             data: newGroup
-        }).then(function(){
+        }).then(function(data){
             console.log("Created New Group");
+            $("body").text(data)
             // location.reload(); 
         });
     })
