@@ -35,9 +35,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistant login sessions
 
+<<<<<<< HEAD
+// Routes
+// const authRoute = require('./controller/user-auth-routes.js')(app, passport);
+// require('./controller/user-auth-routes.js')(app, passport);
+=======
 // Flash
 const flash = require('connect-flash');
 app.use(flash());
+>>>>>>> f4853b86cfcc94518b7d32b432c4245b2355c39d
 
 app.use(flash());
 

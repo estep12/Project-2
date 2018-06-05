@@ -5,7 +5,15 @@ $(function(){
         
 
         var newGroup = {
+
+            name: $("#groupName").val().trim(),
+
+            name: $("#submit-group-name").val().trim(),
+            users: $("#member-username").val().trim(),
+
+
             name: $("#new-group-name").val().trim(),
+
             admin: "1"
 
         };
