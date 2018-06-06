@@ -119,9 +119,6 @@ var members = [
       });
     });
 
-       
-
-    
     app.get("/createGroup", function(req, res) {
       db.People.findAll({
         include: [{
@@ -130,12 +127,8 @@ var members = [
         }]
       }).then(function(dbPeople){
         res.render("creategroup", {members:dbPeople})
-
       });
-
      });
-
-
 
 // ------------------------------------------------------------------------
   app.get("/login", function (req, res) {
