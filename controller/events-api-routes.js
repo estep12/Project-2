@@ -1,8 +1,12 @@
 var db = require("../models")
 
 module.exports = function (app) {
+
   app.get("/api/events", function (req, res) {
-    db.Events.findAll({ include: [db.Group] }).then(function (dbEvents) {
+    db.Events.findAll({ 
+        include: [db.Group]
+}).then(function (dbEvents) {
+    
       res.json(dbEvents)
     });
   });

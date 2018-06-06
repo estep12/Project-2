@@ -1,6 +1,13 @@
 const express = require("express")
 const bodyParser = require("body-parser")
+var Handlebars = require('handlebars');
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+// var HandlebarsIntl = require('handlebars-intl');
+Handlebars.registerHelper('date', require('helper-date'));
+// HandlebarsIntl.registerWith(handlebars);
 // const env = require('dotenv').load();
+var moment = require('moment');
 
 // authentication packages
 const passport = require('passport');
