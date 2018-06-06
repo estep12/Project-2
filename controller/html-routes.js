@@ -4,7 +4,7 @@ const passport = require('passport');
 module.exports = function (app) {
 
   function authenticationMiddleware(req, res, next) {
-    console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
+    // console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
     if (req.isAuthenticated()) {
       return next();
     }
@@ -13,25 +13,36 @@ module.exports = function (app) {
 
   // Version 1 (without id's in address)-----------------------------------------------------------------------
 
+
+  // // working groups to index page DELETE when events to index page is working, too
   // app.get("/", authenticationMiddleware, function (req, res) {
 
-  //   db.Group.findAll({
-  //     include: [{
-  //       model: db.Events,
-  //       model: db.People,
-  //       through: { attributes: [] },
-  //     }]
-  //   }).then(function (dbGroup) {
-  //     db.Events.findAll({
-  //       include: [db.Group]
-  //     }).then(function (dbEvents) {
-  //       res.render("index", { groupName: dbGroup, events: dbEvents })
-  //     })
+  //   db.People.findOne(
+  //     {
+  //       where: {
+  //         id: req.session.passport.user,
+  //       },
+  //       include: [db.Group],
+  //     },
+  //   ).then(function (loggedInPerson) {
+  //     // console.log(`group to output: ${loggedInPerson.Groups[0].dataValues.name}`);
+  //     let usersGroupDataArray = loggedInPerson.Groups;
+  //     if (usersGroupDataArray.length > 0) {
+  //       let groupName = [];
+  //       usersGroupDataArray.forEach((element) => {
+  //         groupName.push(element.dataValues.name);
+  //       });
+  //       console.log(groupName);
+  //       res.render("index", { groupName: groupName });
+  //     } else {
+  //       res.render("index", { message: "You aren't a member of a group yet! Create a group below." });
+  //     }
   //   });
   // });
 
-  app.get("/", authenticationMiddleware, function (req, res) {
 
+  app.get("/", authenticationMiddleware, function (req, res) {
+    // find the logged in user's data including all group data
     db.People.findOne(
       {
         where: {
@@ -41,23 +52,45 @@ module.exports = function (app) {
       },
     ).then(function (loggedInPerson) {
       // console.log(`group to output: ${loggedInPerson.Groups[0].dataValues.name}`);
-      let groupDataArray = loggedInPerson.Groups;
-      if (groupDataArray.length > 0) {
-        let groupName = [];
-        groupDataArray.forEach((element) => {
-          groupName.push(element.dataValues.name);
-        });
-        console.log(groupName);
-        res.render("index", { groupName: groupName });
-      } else {
-        res.render("index", { message: "You aren't a member of a group yet! Create a group below." });
-      }
+
+      // array to hold all of the user's group data
+      let usersGroupDataArray = loggedInPerson.Groups;
+
+      let groupName = [];
+      // push the user's group names to the groupName array
+      usersGroupDataArray.forEach((element) => {
+        groupName.push(element.dataValues.name);
+      });
+
+      let usersGroupIds = [];
+      // push the user's group IDs to the usersGroupIds array
+      usersGroupDataArray.forEach((element) => {
+        usersGroupIds.push(element.dataValues.id);
+      });
+      console.log(usersGroupIds);
+
+      // pull user specific events data from the db
+      db.Events.findAll(
+        {
+          where: {
+            GroupId: usersGroupIds,
+          },
+          include: [db.Group],
+        }).then(function (dbEvents) {
+        // console.log(dbEvents);
+        if (usersGroupDataArray.length > 0) {
+          res.render("index", 
+            {
+              groupName: groupName,
+              dbEvents: dbEvents,
+            },
+          );
+        } else {
+          res.render("index", { dbEvents: dbEvents, message: "You aren't a member of a group yet! Create a group below." });
+        }
+      });
     });
   });
-
-  // example that works
-
-  // =======================
 
   app.get("/createEvent", authenticationMiddleware, function (req, res) {
     res.render("createevent")

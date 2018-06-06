@@ -17,14 +17,14 @@ $(function () {
   var groupId;
   var updating = false;
 
-//   if (url.indexOf("?event_id=") !== -1) {
-//     eventId = url.split("=")[1];
-//     getEventData(eventId, "event");
-//   }
+  //   if (url.indexOf("?event_id=") !== -1) {
+  //     eventId = url.split("=")[1];
+  //     getEventData(eventId, "event");
+  //   }
 
-//   else if (url.indexOf("?group_id=") !== -1) {
-//     groupId = url.split("=")[1];
-//   }
+  //   else if (url.indexOf("?group_id=") !== -1) {
+  //     groupId = url.split("=")[1];
+  //   }
 
   getGroups();
 
@@ -50,7 +50,7 @@ $(function () {
     };
 
     console.log(newEvent);
-    
+
     if (updating) {
       newEvent.id = eventId;
       updateEvent(newEvent);
@@ -58,26 +58,26 @@ $(function () {
     else {
       submitEvent(newEvent);
     }
-  
-          function submitEvent(event) {
-        $.ajax("/api/events", {
-            type: "POST",
-            data: newEvent
-        }).then(function () {
-            console.log("Created New Event");
-            window.location.href = "/index";
-        });
+
+    function submitEvent(event) {
+      $.ajax("/api/events", {
+        type: "POST",
+        data: newEvent
+      }).then(function () {
+        console.log("Created New Event");
+        window.location.href = "/";
+      });
     }
-}
-        // function submitEvent(event) {
+  }
+  // function submitEvent(event) {
 
-        //     $.post("/api/events", event, function() {
+  //     $.post("/api/events", event, function() {
 
-        //         window.location.href = "/createEvent"
+  //         window.location.href = "/createEvent"
 
 
-        //     });
-        // }
+  //     });
+  // }
 
 
   function getEventData(id, name) {
@@ -103,60 +103,60 @@ $(function () {
     });
   }
 
-      //these three functions create option elements in select group dropdown
-        function getGroups(){
-            $.get("/api/groups", renderGroupList);
-        }
+  //these three functions create option elements in select group dropdown
+  function getGroups() {
+    $.get("/api/groups", renderGroupList);
+  }
 
-        function renderGroupList(data) {
-            if (!data.length) {
-                window.location.href = "/createGroup"
-            }
-            var rowsToAdd = [];
-            for (var i = 0; i < data.length; i++){
-                rowsToAdd.push(createGroupRow(data[i]))
-            }
-            groupSelect.empty();
-            console.log(rowsToAdd);
-            console.log(groupSelect);
-            groupSelect.append(rowsToAdd);
-            groupSelect.val(groupId)
-        }
+  function renderGroupList(data) {
+    if (!data.length) {
+      window.location.href = "/createGroup"
+    }
+    var rowsToAdd = [];
+    for (var i = 0; i < data.length; i++) {
+      rowsToAdd.push(createGroupRow(data[i]))
+    }
+    groupSelect.empty();
+    console.log(rowsToAdd);
+    console.log(groupSelect);
+    groupSelect.append(rowsToAdd);
+    groupSelect.val(groupId)
+  }
 
-        function createGroupRow(group) {
-            var listOption = $("<option>");
-            listOption.attr("value", group.id);
-            listOption.text(group.name);
-            return listOption
-        }
+  function createGroupRow(group) {
+    var listOption = $("<option>");
+    listOption.attr("value", group.id);
+    listOption.text(group.name);
+    return listOption
+  }
 
 
-        // console.log(newEvent);
-function updateEvent(event){
+  // console.log(newEvent);
+  function updateEvent(event) {
     $.ajax({
-        method: "PUT",
-        url: "/api/events",
-        data: event
+      method: "PUT",
+      url: "/api/events",
+      data: event
     })
-    .then(function(){
+      .then(function () {
         window.location.href = "/";
-    })
+      })
 
-        // $.ajax("/api/events", {
-        //     type: "POST",
-        //     data: newEvent
-        // }).then(function () {
-        //     console.log("Created New Event");
-        //     window.location.href = "/index";
-        // });
-}
-    })
+    // $.ajax("/api/events", {
+    //     type: "POST",
+    //     data: newEvent
+    // }).then(function () {
+    //     console.log("Created New Event");
+    //     window.location.href = "/";
+    // });
+  }
+})
 
   // $.ajax("/api/events", {
   //     type: "POST",
   //     data: newEvent
   // }).then(function () {
   //     console.log("Created New Event");
-  //     window.location.href = "/index";
+  //     window.location.href = "/";
   // });
 // })
