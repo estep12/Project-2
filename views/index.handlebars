@@ -61,7 +61,7 @@
       {{!-- column for Your Weekly Line Up --}}
       <div class="wrapper col-md-9">
       <div class="row">
-          <h1 class="container display-4">Your Weekly Line Up</h1>
+          <h1 class="container display-4">Your Events Line Up</h1>
           {{!-- <p class="lead-1-md">Line up makes it easy to create events, connect with friends, and remind everyone of those upcoming special events</p> --}}
       </div>
 
@@ -70,7 +70,9 @@
         {{#each dbEvents}}
         <div class="card">
           <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapse{{id}}" aria-expanded="true" aria-controls="collapseFour">
-            <p>{{date}} | {{time}}</p>
+           {{!-- <p>{{this.date}} | {{time}}</p> --}}
+           <p>{{moment this.date "calendar"}} | {{time}}</p>
+            {{!-- <p>{{formatDate date day="numeric" month="long" year="numeric"}} | {{time}}</p> --}}
             <h5 class="mb-0">
                 {{name}}
             </h5>

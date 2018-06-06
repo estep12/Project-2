@@ -76,6 +76,7 @@ module.exports = function (app) {
             GroupId: usersGroupIds,
           },
           include: [db.Group],
+          order: [["date"]]
         }).then(function (dbEvents) {
         // console.log(dbEvents);
         if (usersGroupDataArray.length > 0) {
