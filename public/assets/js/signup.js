@@ -35,7 +35,7 @@ $(function () {
       data: newLogin,
     }).then(function () {
       console.log("User Login Submitted");
-      window.location = "/index";
+      window.location = "/";
     });
   });
 });
