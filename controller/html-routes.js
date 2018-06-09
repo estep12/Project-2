@@ -97,27 +97,27 @@ module.exports = function (app) {
     res.render("createevent")
   });
 
-  // app.get("/manageGroup/:id", function (req, res) {
-  //   db.Group.findAll({
-  //     include: [{
-  //       model: db.Events,
-  //       model: db.People,
-  //       through: { attributes: [] }
-  //     }]
-  //   }).then(function (dbGroup) {
-  //     var test = "hi"
-  //     var indexGroupId = 0;
-  //     db.People.findAll({
-  //       include: [{
-  //         model: db.Group,
-  //         through: { attributes: [] }
-  //       }]
-  //     }).then(function (dbPeople) {
-  //       console.log(test);
-  //       res.render("managegroup", { groupName: dbGroup[0], members: dbPeople })
-  //     })
-  //   });
-  // });
+  app.get("/manageGroup/:id", function (req, res) {
+    db.Group.findAll({
+      include: [{
+        model: db.Events,
+        model: db.People,
+        through: { attributes: [] }
+      }]
+    }).then(function (dbGroup) {
+      var test = "hi"
+      var indexGroupId = 0;
+      db.People.findAll({
+        include: [{
+          model: db.Group,
+          through: { attributes: [] }
+        }]
+      }).then(function (dbPeople) {
+        console.log(test);
+        res.render("managegroup", { groupName: dbGroup[0], members: dbPeople })
+      })
+    });
+  });
 
   app.get("/createGroup", authenticationMiddleware, function (req, res) {
     db.People.findAll({
