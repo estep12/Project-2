@@ -1,6 +1,5 @@
 const db = require("../models")
 const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (app) {
   app.get("/api/people", function (req, res) {

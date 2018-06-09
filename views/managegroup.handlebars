@@ -4,8 +4,6 @@
     <div class="navbar centered">
       <a class="navbar-brand" href="#">
                 <div id="spacer"></div>
-
-        {{!-- <img src="index/assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families."> --}}
       </a>
       <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-right">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,8 +12,6 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            {{!-- <a class="nav-item nav-link" href="#">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
             <a class="nav-item nav-link" href="#">Create Group</a>
             <a class="nav-item nav-link" href="/login">Log In</a>
@@ -26,20 +22,15 @@
     </div>
   </div>
 </header>
-
 <main>
 <div class ="container">
   <h1>Manage Your Group</h1>
   <br>
-  
   <div class="form-group">
-
     {{!-- Display, Edit group name --}}
     <div class="row">
       <div class="col-md-8 mb-3 ml-4">
         <h3><label for="validationCustom02">Group Name</label></h3>
-
-          {{!-- {{#each groupName}} --}}
           <li class="list-group-item">
               <div class="d-flex align-items-center">
                 <div id="member-username" class="w-100">{{groupName.name}}</div>
@@ -48,8 +39,6 @@
                 </div>
               </div>
           </li>
-          {{!-- {{/each}} --}}
-          
       </div>
     </div>
 
@@ -101,19 +90,14 @@
         <a href="/"><input class="btn btn-dark" type="submit" value="Done, Go Back to Dashboard"></a>
       </div>
     </div>
-    
   {{!-- close form group div --}}
   </div>  
-
 {{!-- close main body container --}}
 </div> 
-
-
 <script>
 
   $(function() {
     $(document).on('click', '.btn-add', function(e) {
-
         e.preventDefault();
         var controlForm = $('.controls form:first'),
             currentEntry = $(this).parents('.entry:first'),
