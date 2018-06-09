@@ -45,23 +45,5 @@ $(function(){
         })
     });
 
-    // $("#add-new-member").on("click", function(event){
-    //     event.preventDefault();
-    //     // console.log("Click");
-        
-    //     var newMember = {
-    //         name: $("#add-username").val().trim(),
-    //         admin: "1"
-    //     }
-
-    //     console.log(newMember);
-        
-    //     $.ajax("/api/groups", {
-    //         type: "POST",
-    //         data: newMember
-    //     }).then(function(){
-    //         console.log("created new member");
-    //         // location.reload();
-    //     })
-    // })
+    
 }); 

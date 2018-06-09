@@ -17,22 +17,13 @@ $(function () {
   var groupId;
   var updating = false;
 
-  //   if (url.indexOf("?event_id=") !== -1) {
-  //     eventId = url.split("=")[1];
-  //     getEventData(eventId, "event");
-  //   }
 
-  //   else if (url.indexOf("?group_id=") !== -1) {
-  //     groupId = url.split("=")[1];
-  //   }
 
   getGroups();
 
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    // $("#submit-event").on("click", function(event){
-    //     event.preventDefault();
 
     if (!groupSelect.val()) {
       return;
@@ -69,15 +60,7 @@ $(function () {
       });
     }
   }
-  // function submitEvent(event) {
 
-  //     $.post("/api/events", event, function() {
-
-  //         window.location.href = "/createEvent"
-
-
-  //     });
-  // }
 
 
   function getEventData(id, name) {
@@ -142,21 +125,7 @@ $(function () {
         window.location.href = "/";
       })
 
-    // $.ajax("/api/events", {
-    //     type: "POST",
-    //     data: newEvent
-    // }).then(function () {
-    //     console.log("Created New Event");
-    //     window.location.href = "/";
-    // });
+
   }
 })
 
-  // $.ajax("/api/events", {
-  //     type: "POST",
-  //     data: newEvent
-  // }).then(function () {
-  //     console.log("Created New Event");
-  //     window.location.href = "/";
-  // });
-// })

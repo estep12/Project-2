@@ -3,10 +3,7 @@ const bodyParser = require("body-parser")
 var Handlebars = require('handlebars');
 var MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
-// var HandlebarsIntl = require('handlebars-intl');
 Handlebars.registerHelper('date', require('helper-date'));
-// HandlebarsIntl.registerWith(handlebars);
-// const env = require('dotenv').load();
 var moment = require('moment');
 
 // authentication packages
@@ -37,7 +34,6 @@ app.use(session({
   secret: 'fsd889sdneroij$#^r9j2#iop9e',
   resave: false,
   saveUninitialized: false,
-  // cookie: { secure: true },
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistant login sessions

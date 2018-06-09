@@ -52,8 +52,7 @@ module.exports = function (sequelize, DataTypes) {
   People.associate = function (models) {
     People.belongsToMany(models.Group, {
       through: 'PeopleGroups'
-      // as: 'Group',
-      // foreignKey: 'peopleId'
+
     });
   };
 

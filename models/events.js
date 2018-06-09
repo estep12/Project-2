@@ -8,13 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         }
 
     },
-    // groupId: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     validate: {
-    //         len: [1]
-    //     }
-    // },
     organizer: {
         type: DataTypes.STRING,
         allowNull: false,
