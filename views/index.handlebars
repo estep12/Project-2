@@ -38,7 +38,7 @@
           <div class="card-body d-flex">
               <div class="w-100 display-5">{{this}}</div>
               {{!-- Version 1 (without id's in address bar) --}}
-              <div class="flex-shrink-1"><a href="/managegroup">Edit</a></div>
+              <div class="flex-shrink-1"><a href="/manageGroup/:id">Edit</a></div>
               {{!-- Version 1 (with id's in address bar) --}}
               {{!-- <div class="flex-shrink-1"><a href="/managegroup/{{id}}">Edit</a></div> --}}
           </div>
@@ -77,6 +77,7 @@
             {{!-- <p>{{formatDate date day="numeric" month="long" year="numeric"}} | {{time}}</p> --}}
             <h5 class="mb-0">
                 {{name}}
+                {{this.groupName}}
             </h5>
           </div>
           <div id="collapse{{id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
