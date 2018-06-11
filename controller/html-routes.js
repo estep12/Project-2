@@ -2,7 +2,6 @@ var db = require("../models")
 const passport = require('passport');
 
 module.exports = function (app) {
-
   function authenticationMiddleware(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
@@ -10,7 +9,6 @@ module.exports = function (app) {
     res.redirect('/login');
   }
 
-  // Version 1 (without id's in address)-----------------------------------------------------------------------
   app.get("/", authenticationMiddleware, function (req, res) {
     // find the logged in user's data including all group data
     db.People.findOne(
@@ -130,9 +128,3 @@ module.exports = function (app) {
     },
   );
 };
-
-  // End of Version 1
-  // ------------------------------------------------------------------------------------------------------
-
-
-  
