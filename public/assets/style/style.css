@@ -1,4 +1,4 @@
-body {
+/* body {
   background-image: url(../images/line_up3.png);
   background-repeat: no-repeat;
   background-size: 255px;
@@ -6,7 +6,7 @@ body {
 }
 #spacer {
   margin-bottom: 185px;
-}
+} */
 .navbar {
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
